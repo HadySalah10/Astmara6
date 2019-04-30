@@ -8,7 +8,7 @@ namespace Data.Entities
 {
     class Subject: BaseEntity
     {
-        public int Code { get; set; }
+        public int? Code { get; set; }
         [MaxLength(100)]
         public string Academic { get; set; }
         [MaxLength(100)]

@@ -9,6 +9,7 @@ namespace Data.Entities
     class User: BaseEntity
     {
         [MaxLength(50)]
+        [Required]
         public String Password { get; set; }
     }
 }
