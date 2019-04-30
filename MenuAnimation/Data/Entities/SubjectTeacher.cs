@@ -9,12 +9,12 @@ namespace Data.Entities
     class SubjectTeacher: BaseIdEntity
     {
         [ForeignKey("Branch")]
-        public int IdBranch { get; set; }
+        public int? IdBranch { get; set; }
         [ForeignKey("Subject")]
-        public int IdSubject { get; set; }
+        public int? IdSubject { get; set; }
         [ForeignKey("Teacher")]
 
-        public int IdTeacher { get; set; }
+        public int? IdTeacher { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual Teacher Teacher { get; set; }
         public virtual Branch Branch { get; set; }

@@ -7,11 +7,12 @@ namespace Data.Entities
 {
     class WorkHour: BaseIdEntity
     {
-        public double GPA { get; set; }
 
-        public int Quorum { get; set; }
+        public double? GPA { get; set; }
 
-        public bool AcademicOrVirtual { get; set; }
+        public int? Quorum { get; set; }
+
+        public bool? AcademicOrVirtual { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }
 
 

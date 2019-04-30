@@ -234,11 +234,10 @@ F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\UCHome.baml
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Changing Data\Child\UCStudentStatement.baml
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\FRMMainWindow.baml
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.g.resources
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db1.resources
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Properties.Resources.resources
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csproj.GenerateResource.cache
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csproj.CoreCompileInputs.cache
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csproj.CopyComplete
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.exe
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.pdb
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources

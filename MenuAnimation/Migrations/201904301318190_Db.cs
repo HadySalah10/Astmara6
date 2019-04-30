@@ -12,11 +12,11 @@ namespace Astmara6.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        IdSection = c.Int(nullable: false),
+                        IdSection = c.Int(),
                         Name = c.String(maxLength: 100),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Sections", t => t.IdSection, cascadeDelete: true)
+                .ForeignKey("dbo.Sections", t => t.IdSection)
                 .Index(t => t.IdSection);
             
             CreateTable(
@@ -33,15 +33,15 @@ namespace Astmara6.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        IdLevel = c.Int(nullable: false),
-                        IdBranch = c.Int(nullable: false),
-                        IdSubject = c.Int(nullable: false),
+                        IdLevel = c.Int(),
+                        IdBranch = c.Int(),
+                        IdSubject = c.Int(),
                         NumberOfStudent = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Branches", t => t.IdBranch, cascadeDelete: true)
-                .ForeignKey("dbo.Levels", t => t.IdLevel, cascadeDelete: true)
-                .ForeignKey("dbo.Subjects", t => t.IdSubject, cascadeDelete: true)
+                .ForeignKey("dbo.Branches", t => t.IdBranch)
+                .ForeignKey("dbo.Levels", t => t.IdLevel)
+                .ForeignKey("dbo.Subjects", t => t.IdSubject)
                 .Index(t => t.IdLevel)
                 .Index(t => t.IdBranch)
                 .Index(t => t.IdSubject);
@@ -61,9 +61,9 @@ namespace Astmara6.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Code = c.Int(nullable: false),
-                        Academic = c.String(),
-                        Virtual = c.String(),
-                        TotalHours = c.Int(nullable: false),
+                        Academic = c.String(maxLength: 100),
+                        Virtual = c.String(maxLength: 100),
+                        TotalHours = c.Int(),
                         Name = c.String(maxLength: 100),
                     })
                 .PrimaryKey(t => t.Id);
@@ -73,14 +73,14 @@ namespace Astmara6.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        IdBranch = c.Int(nullable: false),
-                        IdSubject = c.Int(nullable: false),
-                        IdTeacher = c.Int(nullable: false),
+                        IdBranch = c.Int(),
+                        IdSubject = c.Int(),
+                        IdTeacher = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Branches", t => t.IdBranch, cascadeDelete: true)
-                .ForeignKey("dbo.Subjects", t => t.IdSubject, cascadeDelete: true)
-                .ForeignKey("dbo.Teachers", t => t.IdTeacher, cascadeDelete: true)
+                .ForeignKey("dbo.Branches", t => t.IdBranch)
+                .ForeignKey("dbo.Subjects", t => t.IdSubject)
+                .ForeignKey("dbo.Teachers", t => t.IdTeacher)
                 .Index(t => t.IdBranch)
                 .Index(t => t.IdSubject)
                 .Index(t => t.IdTeacher);
@@ -90,12 +90,12 @@ namespace Astmara6.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        NickName = c.String(),
-                        IdWorkHours = c.Int(nullable: false),
+                        NickName = c.String(maxLength: 100),
+                        IdWorkHours = c.Int(),
                         Name = c.String(maxLength: 100),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.WorkHours", t => t.IdWorkHours, cascadeDelete: true)
+                .ForeignKey("dbo.WorkHours", t => t.IdWorkHours)
                 .Index(t => t.IdWorkHours);
             
             CreateTable(
@@ -103,9 +103,9 @@ namespace Astmara6.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        GPA = c.Double(nullable: false),
-                        Quorum = c.Int(nullable: false),
-                        AcademicOrVirtual = c.Boolean(nullable: false),
+                        GPA = c.Double(),
+                        Quorum = c.Int(),
+                        AcademicOrVirtual = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -114,7 +114,7 @@ namespace Astmara6.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Password = c.String(),
+                        Password = c.String(maxLength: 50),
                         Name = c.String(maxLength: 100),
                     })
                 .PrimaryKey(t => t.Id);

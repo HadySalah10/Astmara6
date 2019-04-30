@@ -9,11 +9,11 @@ namespace Data.Entities
     class StudentStatment: BaseIdEntity
     {
         [ForeignKey("Level")]
-        public int IdLevel { get; set; }
+        public int? IdLevel { get; set; }
         [ForeignKey("Branch")]
-        public int IdBranch { get; set; }
+        public int? IdBranch { get; set; }
         [ForeignKey("Subject")]
-        public int IdSubject { get; set; }
+        public int? IdSubject { get; set; }
         public int NumberOfStudent { get; set; }
         public  virtual Branch Branch{ get; set; }
         public virtual Level Level { get; set; }
