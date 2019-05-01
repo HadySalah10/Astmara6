@@ -194,7 +194,6 @@ F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\EntityFramework.SqlServ
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\MaterialDesignColors.pdb
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\MaterialDesignThemes.Wpf.pdb
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\MaterialDesignThemes.Wpf.xml
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csprojAssemblyReference.cache
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Child\UCCourses.g.cs
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Child\UCDepartment.g.cs
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Child\UCDoctors.g.cs
@@ -242,3 +241,4 @@ F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.exe
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.pdb
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csprojAssemblyReference.cache

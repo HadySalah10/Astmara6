@@ -65,14 +65,7 @@ namespace Astmara6Con
 
         private void BTNAdd_Click_1(object sender, RoutedEventArgs e)
         {
-            //CollegeContext dataContext = new CollegeContext();
-            //Level LevelRow = DGLevelsView.SelectedItem as Level;
-
-            //Level levels = (from p in dataContext.Levels
-            //                where p.Id == 
-            //                select p).Single();
-
-
+          
             CollegeContext db = new CollegeContext();
             db.Levels.Add(new Level()
             {
@@ -161,6 +154,11 @@ namespace Astmara6Con
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
 
+
+        }
+
+        private void TBNameLevels_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
 
         }
     }
