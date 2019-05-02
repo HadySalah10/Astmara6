@@ -65,18 +65,24 @@ namespace Astmara6Con
 
         private void BTNAdd_Click_1(object sender, RoutedEventArgs e)
         {
-          
-            CollegeContext db = new CollegeContext();
-            db.Levels.Add(new Level()
+            if (TBNameLevels.Text == null)
             {
-                Name = TBNameLevels.Text
+                MessageBox.Show("انت لم تدخل شيئا!!");
 
-            });
-            db.SaveChanges();
-            loadData();
-            MessageBox.Show("تم حفظ العملية بنجاح");
-            TBNameLevels.Text = "";
+            }
+            else
+            {
+                CollegeContext db = new CollegeContext();
+                db.Levels.Add(new Level()
+                {
+                    Name = TBNameLevels.Text
 
+                });
+                db.SaveChanges();
+                loadData();
+                MessageBox.Show("تم حفظ العملية بنجاح");
+                TBNameLevels.Text = "";
+            }
         }
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)

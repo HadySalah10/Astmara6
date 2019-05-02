@@ -90,7 +90,7 @@ namespace Astmara6Con.Controls
                 cd.SaveChanges();
                 loadData();
 
-                MessageBox.Show("Row Deleted Successfully.");
+                MessageBox.Show("تم مسح العنصر بنجاح");
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
 
@@ -107,7 +107,7 @@ namespace Astmara6Con.Controls
                 cd.SaveChanges();
                 loadData();
 
-                MessageBox.Show("All Data Are Deleted Successfully.");
+                MessageBox.Show("تم مسح كل البيانات");
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
         }
@@ -123,6 +123,11 @@ namespace Astmara6Con.Controls
             loadData();
             MessageBox.Show("تم حفظ العملية بنجاح");
             TBNameDepartment.Text = "";
+        }
+
+        private void DGDepartmentView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

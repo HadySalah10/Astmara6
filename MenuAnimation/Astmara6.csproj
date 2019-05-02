@@ -154,6 +154,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Astmara6DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Astmara6DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Astmara6DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Astmara6DataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Astmara6DataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Fixed Data\Child\UCCourses.xaml.cs">
       <DependentUpon>UCCourses.xaml</DependentUpon>
     </Compile>
@@ -266,6 +276,28 @@
     </None>
     <None Include="Astmara6DataSet1.xss">
       <DependentUpon>Astmara6DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Astmara6DataSet2.xsc">
+      <DependentUpon>Astmara6DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Astmara6DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Astmara6DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Astmara6DataSet2.xss">
+      <DependentUpon>Astmara6DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Astmara6DataSet3.xsc">
+      <DependentUpon>Astmara6DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Astmara6DataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Astmara6DataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Astmara6DataSet3.xss">
+      <DependentUpon>Astmara6DataSet3.xsd</DependentUpon>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
