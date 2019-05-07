@@ -104,7 +104,7 @@ namespace Astmara6Con.Controls
                 loadData();
 
 
-                MessageBox.Show("Row Updated Successfully.");
+                MessageBox.Show("تم تعديل الصف بنجاح");
 
             }
             catch (Exception Ex)

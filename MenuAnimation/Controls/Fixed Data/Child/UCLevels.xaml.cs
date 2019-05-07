@@ -101,7 +101,7 @@ namespace Astmara6Con
                 loadData();
 
 
-                MessageBox.Show("Row Updated Successfully.");
+                MessageBox.Show("تم تعديل الصف بنجاح");
 
             }
             catch (Exception Ex)
@@ -138,7 +138,7 @@ namespace Astmara6Con
                 cd.SaveChanges();
                 loadData();
 
-                MessageBox.Show("Row Deleted Successfully.");
+                MessageBox.Show("تم حذف الصف بنجاح");
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
 
@@ -156,7 +156,7 @@ namespace Astmara6Con
                 cd.SaveChanges();
                 loadData();
 
-                MessageBox.Show("All Data Are Deleted Successfully.");
+                MessageBox.Show("كل البيانات حذفت بنجاح");
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
 

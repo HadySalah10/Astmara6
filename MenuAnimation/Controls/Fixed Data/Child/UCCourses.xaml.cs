@@ -161,5 +161,74 @@ namespace Astmara6Con.Controls
         {
 
         }
+
+        private void BTNEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                CollegeContext dataContext = new CollegeContext();
+                Subject CoursesRow = DGCoursesView.SelectedItem as Subject;
+
+
+                Subject subjects = (from p in dataContext.Subjects
+                                    where p.Id == CoursesRow.Id
+                                    select p).Single();
+                subjects.Name = CoursesRow.Name;
+                subjects.Code = CoursesRow.Code;
+                subjects.Academic = CoursesRow.Academic;
+                subjects.Virtual = CoursesRow.Virtual;
+                subjects.Exprement = CoursesRow.Exprement;
+
+                dataContext.SaveChanges();
+                loadData();
+
+
+                MessageBox.Show("تم تعديل الصف بنجاح");
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+                return;
+            }
+        }
+
+        private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                CollegeContext cd = new CollegeContext();
+                Subject SubjectRow = DGCoursesView.SelectedItem as Subject;
+
+                Subject subjects = (from p in cd.Subjects
+                                    where p.Id == SubjectRow.Id
+                                    select p).Single();
+                cd.Subjects.Remove(subjects);
+                cd.SaveChanges();
+                loadData();
+
+                MessageBox.Show("تم مسح العنصر بنجاح");
+            }
+            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+        }
+
+        private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                CollegeContext cd = new CollegeContext();
+
+                cd.Subjects.RemoveRange(cd.Subjects);
+
+                cd.SaveChanges();
+                loadData();
+
+                MessageBox.Show("تم مسح كل البيانات");
+            }
+            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+
+        }
     }
 }
