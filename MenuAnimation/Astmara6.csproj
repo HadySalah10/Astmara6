@@ -164,6 +164,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Astmara6DataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Astmara6DataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Astmara6DataSet4.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Fixed Data\Child\UCCourses.xaml.cs">
       <DependentUpon>UCCourses.xaml</DependentUpon>
     </Compile>
@@ -230,9 +235,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201904301318190_Db.cs" />
-    <Compile Include="Migrations\201904301318190_Db.Designer.cs">
-      <DependentUpon>201904301318190_Db.cs</DependentUpon>
+    <Compile Include="Migrations\201905052146513_Db.cs" />
+    <Compile Include="Migrations\201905052146513_Db.Designer.cs">
+      <DependentUpon>201905052146513_Db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -248,8 +253,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201904301318190_Db.resx">
-      <DependentUpon>201904301318190_Db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905052146513_Db.resx">
+      <DependentUpon>201905052146513_Db.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -298,6 +303,17 @@
     </None>
     <None Include="Astmara6DataSet3.xss">
       <DependentUpon>Astmara6DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Astmara6DataSet4.xsc">
+      <DependentUpon>Astmara6DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="Astmara6DataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Astmara6DataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Astmara6DataSet4.xss">
+      <DependentUpon>Astmara6DataSet4.xsd</DependentUpon>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>

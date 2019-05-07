@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+
 namespace Data.Entities.Abstraction
 {
     class BaseEntity:BaseIdEntity

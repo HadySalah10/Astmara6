@@ -8,7 +8,7 @@ namespace Data.Entities
     class WorkHour: BaseIdEntity
     {
 
-        public double? GPA { get; set; }
+        public double? Rank { get; set; }
 
         public int? Quorum { get; set; }
 

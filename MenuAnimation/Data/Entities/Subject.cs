@@ -9,10 +9,9 @@ namespace Data.Entities
     class Subject: BaseEntity
     {
         public int? Code { get; set; }
-        [MaxLength(100)]
-        public string Academic { get; set; }
-        [MaxLength(100)]
-        public string Virtual { get; set; }
+        public int? Academic { get; set; }
+        public int? Virtual { get; set; }
+        public int? Exprement { get; set; }
         public int? TotalHours { get; set; }
         public virtual ICollection<StudentStatment> StudentStatments { get; set; }
         public virtual ICollection<SubjectTeacher> SubjectTeachers { get; set; }
