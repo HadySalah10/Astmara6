@@ -18,7 +18,7 @@ namespace Astmara6Con.Controls
         int? TotalHour;
         int? Expremente =null;
         int? Virtuale=null;
-        int codee;
+        string codee;
         int? Academee;
         public void loadData()
         {
@@ -60,7 +60,7 @@ namespace Astmara6Con.Controls
         
         private void BTNAdd_Click(object sender, RoutedEventArgs e)
         {
-             codee = int.Parse(TBCode.Text);
+             codee = TBCode.Text;
               Academee = int.Parse(TBPaper.Text);
             
                 CollegeContext db = new CollegeContext();
@@ -92,8 +92,8 @@ namespace Astmara6Con.Controls
             {
                 TBExprement.IsReadOnly = true;
               TotalHour  =
-            + int.Parse(TBPaper.Text)
-            + int.Parse(TBVirtual.Text);
+              int.Parse(TBPaper.Text)
+              + int.Parse(TBVirtual.Text);
                 Virtuale = int.Parse(TBVirtual.Text);
                 
             }
@@ -115,7 +115,7 @@ namespace Astmara6Con.Controls
                 TBVirtual.IsReadOnly = true;
 
                 TotalHour =
-                +int.Parse(TBPaper.Text)
+                 int.Parse(TBPaper.Text)
                 + int.Parse(TBExprement.Text);
                 Expremente = int.Parse(TBExprement.Text);
                 TotalHour = Expremente + Academee;
@@ -154,7 +154,6 @@ namespace Astmara6Con.Controls
             //can't write but numbers for TBPaper
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
-
         }
 
         private void TBPaper_TextChanged(object sender, TextChangedEventArgs e)
@@ -169,8 +168,6 @@ namespace Astmara6Con.Controls
             {
                 CollegeContext dataContext = new CollegeContext();
                 Subject CoursesRow = DGCoursesView.SelectedItem as Subject;
-
-
                 Subject subjects = (from p in dataContext.Subjects
                                     where p.Id == CoursesRow.Id
                                     select p).Single();
@@ -179,13 +176,9 @@ namespace Astmara6Con.Controls
                 subjects.Academic = CoursesRow.Academic;
                 subjects.Virtual = CoursesRow.Virtual;
                 subjects.Exprement = CoursesRow.Exprement;
-
                 dataContext.SaveChanges();
                 loadData();
-
-
                 MessageBox.Show("تم تعديل الصف بنجاح");
-
             }
             catch (Exception Ex)
             {
@@ -224,11 +217,9 @@ namespace Astmara6Con.Controls
 
                 cd.SaveChanges();
                 loadData();
-
                 MessageBox.Show("تم مسح كل البيانات");
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
-
         }
     }
 }
