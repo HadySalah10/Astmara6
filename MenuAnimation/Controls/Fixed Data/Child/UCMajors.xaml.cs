@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using System.Linq;
 using Data.Entities;
 using System;
+using System.Text.RegularExpressions;
+
 namespace Astmara6Con.Controls
 {
     /// <summary>
@@ -25,22 +27,48 @@ namespace Astmara6Con.Controls
         }
         public void TakeDataFromCombo()
         {
+            if (CBNameDepartment.SelectedItem == null)
+            {
+                MessageBox.Show("يرجي ادخال  القسم");
+            }
+            else { 
             CollegeContext cd = new CollegeContext();
             Section SectionCB = CBNameDepartment.SelectedItem as Section;
-            Section sections = (from p in cd.Sections
-                                where p.Id == SectionCB.Id
-                                select p).Single();
+            CollegeContext db = new CollegeContext();
 
-            cd.Branches.Add(new Branch()
+            var result = (from p in db.Branches
+                          where p.Name == TBNameMajors.Text
+                          select p).SingleOrDefault();
+            if (result == null)
             {
-                IdSection = SectionCB.Id,
-                Name = TBNameMajors.Text
-            });
-            cd.SaveChanges();
-            loadData();
-            MessageBox.Show("تم حفظ البيانات بنجاح ");
+                if (TBNameMajors.Text == "" || TBNameMajors.Text == " " || TBNameMajors.Text == "  " || TBNameMajors.Text == "   " || TBNameMajors.Text == "    ")
+                {
+                    MessageBox.Show("انت لم تدخل شيئا!!");
 
+                }
+                else
+                {
+                    Section sections = (from p in cd.Sections
+                                        where p.Id == SectionCB.Id
+                                        select p).Single();
 
+                    cd.Branches.Add(new Branch()
+                    {
+                        IdSection = SectionCB.Id,
+                        Name = TBNameMajors.Text
+                    });
+                    cd.SaveChanges();
+                    loadData();
+                    MessageBox.Show("تم حفظ البيانات بنجاح ");
+                }
+            }
+            else
+            {
+                MessageBox.Show("الاسم موجود مسبقا!!");
+
+            }
+            TBNameMajors.Text = "";
+            }
         }
         public void loadDataCombo()
         {
@@ -90,30 +118,41 @@ namespace Astmara6Con.Controls
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {
-            try
+            CollegeContext dataContext = new CollegeContext();
+            Branch DepartmentRow = DGMajorsView.SelectedItem as Branch;
+            Branch levels = (from p in dataContext.Branches
+                            where p.Id == DepartmentRow.Id
+                            select p).Single();
+            if (DepartmentRow.Name != levels.Name)
             {
-                CollegeContext dataContext = new CollegeContext();
-                Branch DepartmentRow = DGMajorsView.SelectedItem as Branch;
+
+                try
+                {
 
 
-                Branch departments = (from p in dataContext.Branches
-                                      where p.Id == DepartmentRow.Id
-                                      select p).Single();
-                departments.Name = DepartmentRow.Name;
-                dataContext.SaveChanges();
-                loadData();
+
+                    Branch departments = (from p in dataContext.Branches
+                                          where p.Id == DepartmentRow.Id
+                                          select p).Single();
+                    departments.Name = DepartmentRow.Name;
+                    dataContext.SaveChanges();
+                    loadData();
 
 
-                MessageBox.Show("تم تعديل الصف بنجاح");
+                    MessageBox.Show("تم تعديل الصف بنجاح");
+
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
 
             }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-                return;
-            }
-
-        }
+}
 
         private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
         {
@@ -137,9 +176,22 @@ namespace Astmara6Con.Controls
         }
         private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
         {
-            try
+            CollegeContext cd = new CollegeContext();
+            Level LevelRow = DGMajorsView.SelectedItem as Level;
+
+            var result1 = (from p in cd.Branches
+                           where p.Name == null
+                           select p);
+            if (result1 != null)
             {
-                CollegeContext cd = new CollegeContext();
+                MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    try
+                    {
 
                 cd.Branches.RemoveRange(cd.Branches);
 
@@ -149,8 +201,37 @@ namespace Astmara6Con.Controls
                 MessageBox.Show("تم مسح كل البيانات");
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    MessageBox.Show("لم يتم حذف شئ");
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("لا يوجد بيانات لحذفها");
+
+
+            }
         }
 
+        private void CBNameDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void NumberValidationTextBox(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            //can't write but numbers for TBNameLevels
+            Regex regex = new Regex("[^ء-ي]+");
+            e.Handled = regex.IsMatch(e.Text);
+
+        }
+
+        private void CBNameDepartment_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     } 
 
      

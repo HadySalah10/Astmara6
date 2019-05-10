@@ -155,7 +155,7 @@ namespace Astmara6Con.Controls
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
+            
         private void TBPaper_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -163,9 +163,11 @@ namespace Astmara6Con.Controls
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            
             try
             {
+
+
                 CollegeContext dataContext = new CollegeContext();
                 Subject CoursesRow = DGCoursesView.SelectedItem as Subject;
                 Subject subjects = (from p in dataContext.Subjects
@@ -175,11 +177,23 @@ namespace Astmara6Con.Controls
                 subjects.Code = CoursesRow.Code;
                 subjects.Academic = CoursesRow.Academic;
                 subjects.Virtual = CoursesRow.Virtual;
-                subjects.Exprement = CoursesRow.Exprement;
-                dataContext.SaveChanges();
-                loadData();
-                MessageBox.Show("تم تعديل الصف بنجاح");
-            }
+                    subjects.Exprement = CoursesRow.Exprement;
+                    if (DGCoursesView.SelectedCells.Count > 0)
+                    {
+                        if (CoursesRow.Virtual == null)
+                        {
+                            subjects.TotalHours = CoursesRow.Exprement + CoursesRow.Academic;
+
+                        }
+                        else if (CoursesRow.Exprement == null)
+                        {
+                            subjects.TotalHours = CoursesRow.Virtual + CoursesRow.Academic;
+                        }
+                    }
+                    dataContext.SaveChanges();
+                    loadData();
+                    MessageBox.Show("تم تعديل الصف بنجاح");
+                } 
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message);
@@ -220,6 +234,17 @@ namespace Astmara6Con.Controls
                 MessageBox.Show("تم مسح كل البيانات");
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+        }
+        private void NumberValidationTextBox3(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            //can't write but numbers for TBNameCourse
+            Regex regex = new Regex("[^ء-ي]+");
+            e.Handled = regex.IsMatch(e.Text);
+
+        }
+        private void TBNameCourse_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
