@@ -77,9 +77,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Astmara6DataSet5.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905082026102_Db.cs" />
-    <Compile Include="Migrations\201905082026102_Db.Designer.cs">
-      <DependentUpon>201905082026102_Db.cs</DependentUpon>
+    <Compile Include="Migrations\201905101743510_Db.cs" />
+    <Compile Include="Migrations\201905101743510_Db.Designer.cs">
+      <DependentUpon>201905101743510_Db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="WorkHours.Designer.cs">
@@ -235,9 +235,9 @@
     </Compile>
     <Compile Include="Data\Entities\Abstraction\BaseEntity.cs" />
     <Compile Include="Data\Entities\Abstraction\BaseIdEntity.cs" />
-    <Compile Include="Data\Entities\Branch.cs" />
-    <Compile Include="Data\Entities\Level.cs" />
     <Compile Include="Data\Entities\Section.cs" />
+    <Compile Include="Data\Entities\Level.cs" />
+    <Compile Include="Data\Entities\Branch.cs" />
     <Compile Include="Data\Entities\StudentStatment.cs" />
     <Compile Include="Data\Entities\Subject.cs" />
     <Compile Include="Data\Entities\SubjectTeacher.cs" />
@@ -263,8 +263,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201905082026102_Db.resx">
-      <DependentUpon>201905082026102_Db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905101743510_Db.resx">
+      <DependentUpon>201905101743510_Db.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -31,53 +31,54 @@ namespace Astmara6Con.Controls
             {
                 MessageBox.Show("يرجي ادخال  القسم");
             }
-            else { 
-            CollegeContext cd = new CollegeContext();
-            Section SectionCB = CBNameDepartment.SelectedItem as Section;
-            CollegeContext db = new CollegeContext();
-
-            var result = (from p in db.Branches
-                          where p.Name == TBNameMajors.Text
-                          select p).SingleOrDefault();
-            if (result == null)
+            else
             {
-                if (TBNameMajors.Text == "" || TBNameMajors.Text == " " || TBNameMajors.Text == "  " || TBNameMajors.Text == "   " || TBNameMajors.Text == "    ")
-                {
-                    MessageBox.Show("انت لم تدخل شيئا!!");
+                CollegeContext cd = new CollegeContext();
+                Section SectionCB = CBNameDepartment.SelectedItem as Section;
+                CollegeContext db = new CollegeContext();
 
+                var result = (from p in db.Branches
+                              where p.Name == TBNameMajors.Text
+                              select p).SingleOrDefault();
+                if (result == null)
+                {
+                    if (TBNameMajors.Text == "" || TBNameMajors.Text == " " || TBNameMajors.Text == "  " || TBNameMajors.Text == "   " || TBNameMajors.Text == "    ")
+                    {
+                        MessageBox.Show("انت لم تدخل شيئا!!");
+
+                    }
+                    else
+                    {
+                        Branch branchs = (from p in cd.Branches
+                                            where p.Id == SectionCB.Id
+                                            select p).Single();
+
+                        cd.Sections.Add(new Section()
+                        {
+                            Id = SectionCB.Id,
+                            Name = TBNameMajors.Text
+                        });
+                        cd.SaveChanges();
+                        loadData();
+                        MessageBox.Show("تم حفظ البيانات بنجاح ");
+                    }
                 }
                 else
                 {
-                    Section sections = (from p in cd.Sections
-                                        where p.Id == SectionCB.Id
-                                        select p).Single();
+                    MessageBox.Show("الاسم موجود مسبقا!!");
 
-                    cd.Branches.Add(new Branch()
-                    {
-                        IdSection = SectionCB.Id,
-                        Name = TBNameMajors.Text
-                    });
-                    cd.SaveChanges();
-                    loadData();
-                    MessageBox.Show("تم حفظ البيانات بنجاح ");
                 }
-            }
-            else
-            {
-                MessageBox.Show("الاسم موجود مسبقا!!");
-
-            }
-            TBNameMajors.Text = "";
+                TBNameMajors.Text = "";
             }
         }
         public void loadDataCombo()
         {
             CollegeContext cd = new CollegeContext();
 
-            var sections = (from p in cd.Sections
+            var branchs = (from p in cd.Branches
                             select p).ToList();
 
-            CBNameDepartment.ItemsSource = sections;
+            CBNameDepartment.ItemsSource = branchs;
         }
         string STRNamePage;
         readonly FRMMainWindow Form = Application.Current.Windows[0] as FRMMainWindow;
@@ -118,41 +119,42 @@ namespace Astmara6Con.Controls
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {
-            CollegeContext dataContext = new CollegeContext();
-            Branch DepartmentRow = DGMajorsView.SelectedItem as Branch;
-            Branch levels = (from p in dataContext.Branches
-                            where p.Id == DepartmentRow.Id
-                            select p).Single();
-            if (DepartmentRow.Name != levels.Name)
-            {
+        //    CollegeContext dataContext = new CollegeContext();
+        //    Branch DepartmentRow = DGMajorsView.SelectedItem as Branch;
+        //    Branch levels = (from p in dataContext.Branches
+        //                     where p.Id == DepartmentRow.Id
+        //                     select p).Single();
+            //if (DepartmentRow.Name != levels.Name)
+            //{
 
-                try
-                {
-
-
-
-                    Branch departments = (from p in dataContext.Branches
-                                          where p.Id == DepartmentRow.Id
-                                          select p).Single();
-                    departments.Name = DepartmentRow.Name;
-                    dataContext.SaveChanges();
-                    loadData();
+            //    try
+            //    {
 
 
-                    MessageBox.Show("تم تعديل الصف بنجاح");
 
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message);
-                    return;
-                }
-            } else
-            {
-                MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
+            //        Branch departments = (from p in dataContext.Branches
+            //                              where p.Id == DepartmentRow.Id
+            //                              select p).Single();
+            //        departments.Name = DepartmentRow.Name;
+            //        dataContext.SaveChanges();
+            //        loadData();
 
-            }
-}
+
+            //        MessageBox.Show("تم تعديل الصف بنجاح");
+
+            //    }
+            //    catch (Exception Ex)
+            //    {
+            //        MessageBox.Show(Ex.Message);
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
+
+            //}
+        }
 
         private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
         {
@@ -179,41 +181,42 @@ namespace Astmara6Con.Controls
             CollegeContext cd = new CollegeContext();
             Level LevelRow = DGMajorsView.SelectedItem as Level;
 
-            var result1 = (from p in cd.Branches
-                           where p.Name == null
-                           select p);
-            if (result1 != null)
-            {
-                MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            //var result1 = (from p in cd.Branches
+            //               where p.Name == null
+            //               select p);
+            //if (result1 != null)
+            //{
+            //    MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
 
-                if (result == MessageBoxResult.Yes)
-                {
+            //    if (result == MessageBoxResult.Yes)
+            //    {
 
-                    try
-                    {
+            //        try
+            //        {
 
-                cd.Branches.RemoveRange(cd.Branches);
+            //            cd.Branches.RemoveRange(cd.Branches);
 
-                cd.SaveChanges();
-                loadData();
+            //            cd.SaveChanges();
+            //            loadData();
 
-                MessageBox.Show("تم مسح كل البيانات");
-            }
-            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
-                }
-                else if (result == MessageBoxResult.No)
-                {
-                    MessageBox.Show("لم يتم حذف شئ");
+            //            MessageBox.Show("تم مسح كل البيانات");
+            //        }
+            //        catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+            //    }
+            //    else if (result == MessageBoxResult.No)
+            //    {
+            //        MessageBox.Show("لم يتم حذف شئ");
 
-                }
-            }
-            else
-            {
-                MessageBox.Show("لا يوجد بيانات لحذفها");
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("لا يوجد بيانات لحذفها");
 
 
-            }
+            //}
         }
 
         private void CBNameDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -232,8 +235,8 @@ namespace Astmara6Con.Controls
         {
 
         }
-    } 
+    }
 
-     
-    
+
+
 }

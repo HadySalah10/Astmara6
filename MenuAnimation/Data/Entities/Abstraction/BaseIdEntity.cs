@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Data.Entities.Abstraction
 {
-    class BaseIdEntity
+   public class BaseIdEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

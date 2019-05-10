@@ -73,7 +73,7 @@ namespace Astmara6Con.Controls
                 Exprement = Expremente,
                 Virtual = Virtuale,
                 TotalHours = TotalHour
-                
+               
             });
             db.SaveChanges();
             loadData();

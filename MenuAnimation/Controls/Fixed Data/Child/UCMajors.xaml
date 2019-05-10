@@ -14,6 +14,8 @@
         <CollectionViewSource x:Key="sectionsViewSource" Source="{Binding Sections, Source={StaticResource astmara6DataSet3}}"/>
         <Astmara6:Astmara6DataSet2 x:Key="astmara6DataSet2"/>
         <CollectionViewSource x:Key="branchesViewSource" Source="{Binding Branches, Source={StaticResource astmara6DataSet2}}"/>
+        <Astmara6:Astmara6DataSet5 x:Key="astmara6DataSet5"/>
+        <CollectionViewSource x:Key="branchesViewSource1" Source="{Binding Branches, Source={StaticResource astmara6DataSet5}}"/>
     </UserControl.Resources>
     <Grid DataContext="{StaticResource sectionsViewSource}">
         <Label Content="اسم القسم" HorizontalAlignment="Left" Margin="658,226,0,0" VerticalAlignment="Top" Background="{x:Null}">
@@ -46,22 +48,6 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
         </Button>
-        <ComboBox x:Name="CBNameDepartment"   Foreground="White" DisplayMemberPath="TypeOfSection"  Height="30" ItemsSource="{Binding TypeOfSection}" Margin="541,226,93,228" SelectedValuePath="Id" Width="Auto" RenderTransformOrigin="1.105,0.5" SelectionChanged="CBNameDepartment_SelectionChanged_1">
-            <ComboBox.Background>
-                <SolidColorBrush Color="black"/>
-            </ComboBox.Background>
-            
-            <ComboBox.BorderBrush>
-                <SolidColorBrush Color="{DynamicResource 1}"/>
-            </ComboBox.BorderBrush>
-
-            <ComboBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel/>
-                </ItemsPanelTemplate>
-            </ComboBox.ItemsPanel>
-
-        </ComboBox>
         <DataGrid x:Name="DGMajorsView" AutoGenerateColumns="False" FlowDirection="RightToLeft" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource branchesViewSource}}" Margin="346,284,0,0" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="BranchesDataGrid_SelectionChanged" BindingGroup="{Binding Id, Mode=OneWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Visibility="Hidden" Width="SizeToHeader"/>
@@ -75,6 +61,16 @@
         <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="451,294,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
         <Button x:Name="BTNEdit" Content="تعديل" HorizontalAlignment="Left" Margin="522,294,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
         <Button x:Name="BTNRemoveAll" Content="حذف الكل" HorizontalAlignment="Left" Margin="348,294,0,0" VerticalAlignment="Top" Width="98" Height="28" Click="BTNRemoveAll_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <ComboBox x:Name="CBNameDepartment" Foreground="White" DisplayMemberPath="Name"  ItemsSource="{Binding Source={StaticResource branchesViewSource1}}" Margin="536,226,93,228" SelectedValuePath="Id" Height="30">
+            <ComboBox.Background>
+                <SolidColorBrush Color="black"/>
+            </ComboBox.Background>
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
 
 
 

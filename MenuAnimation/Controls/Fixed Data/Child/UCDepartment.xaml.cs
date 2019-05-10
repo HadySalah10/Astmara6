@@ -17,10 +17,10 @@ namespace Astmara6Con.Controls
         {
             CollegeContext cd = new CollegeContext();
 
-            var Sections = (from p in cd.Sections
+            var branchs = (from p in cd.Branches
                           select p).ToList();
 
-            DGDepartmentView.ItemsSource = Sections;
+            DGDepartmentView.ItemsSource = branchs;
             TBNameDepartment.Text = "";
         }
         string STRNamePage;
@@ -52,34 +52,33 @@ namespace Astmara6Con.Controls
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {
             CollegeContext dataContext = new CollegeContext();
-            Section LevelRow = DGDepartmentView.SelectedItem as Section;
+            Branch LevelRow = DGDepartmentView.SelectedItem as Branch;
 
-            Section sections = (from p in dataContext.Sections
-                            where p.Id == LevelRow.Id
+            Branch branchs = (from p in dataContext.Branches
+                              where p.Id == LevelRow.Id
                             select p).Single();
-            if (LevelRow.TypeOfSection != sections.TypeOfSection)
+            if (LevelRow.Name != branchs.Name)
             {
                 try
             {
-                    Section DepartmentRow = DGDepartmentView.SelectedItem as Section;
+                    Branch DepartmentRow = DGDepartmentView.SelectedItem as Branch;
 
-                    Section departments = (from p in dataContext.Sections
+                    Branch departments = (from p in dataContext.Branches
                                       where p.Id == DepartmentRow.Id
                                       select p).Single();
-                departments.TypeOfSection = DepartmentRow.TypeOfSection;
+                departments.Name = DepartmentRow.Name;
                 dataContext.SaveChanges();
                 loadData();
 
 
                 MessageBox.Show("تم تعديل الصف بنجاح");
 
-            }
-            catch (Exception Ex)
+                }
+                catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message);
                 return;
             }
-            TBNameDepartment.Text = "";
             }
             else
             {
@@ -92,16 +91,16 @@ namespace Astmara6Con.Controls
         {
 
             CollegeContext cd = new CollegeContext();
-            Section DepartmentRow = DGDepartmentView.SelectedItem as Section;
+            Branch DepartmentRow = DGDepartmentView.SelectedItem as Branch;
 
             try
             {
 
 
-                Section sections = (from p in cd.Sections
+                Branch branchs = (from p in cd.Branches
                                     where p.Id == DepartmentRow.Id
                                     select p).Single();
-                cd.Sections.Remove(sections);
+                cd.Branches.Remove(branchs);
                 cd.SaveChanges();
                 loadData();
 
@@ -114,11 +113,7 @@ namespace Astmara6Con.Controls
         private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
         {
             CollegeContext cd = new CollegeContext();
-            var result1 = (from p in cd.Sections
-                           where p.TypeOfSection == null
-                           select p);
-            if (result1 != null)
-            {
+           
                 MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -139,21 +134,16 @@ namespace Astmara6Con.Controls
                     MessageBox.Show("لم يتم حذف شئ");
 
                 }
-            }
-            else
-            {
-                MessageBox.Show("لا يوجد بيانات لحذفها");
-
-
-            }
+            
+            
         }
 
             private void BTNAdd_Click(object sender, RoutedEventArgs e)
         {
              CollegeContext dc = new CollegeContext();
 
-            var result = (from p in dc.Sections
-                          where p.TypeOfSection == TBNameDepartment.Text
+            var result = (from p in dc.Branches
+                          where p.Name == TBNameDepartment.Text
                           select p).SingleOrDefault();
             if (result == null)
             {
@@ -167,9 +157,9 @@ namespace Astmara6Con.Controls
 
 
                     CollegeContext db = new CollegeContext();
-                    db.Sections.Add(new Section()
+                    db.Branches.Add(new Branch()
                     {
-                        TypeOfSection = TBNameDepartment.Text
+                        Name = TBNameDepartment.Text
                     });
                     db.SaveChanges();
                     loadData();

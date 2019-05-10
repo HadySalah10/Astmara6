@@ -15,7 +15,7 @@ namespace Data.Entities
         [ForeignKey("Subject")]
         public int? IdSubject { get; set; }
         public int? NumberOfStudent { get; set; }
-        public  virtual Branch Branch{ get; set; }
+        public  virtual Branch Branch { get; set; }
         public virtual Level Level { get; set; }
         public virtual Subject Subject { get; set; }
 

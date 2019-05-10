@@ -15,9 +15,9 @@ namespace Data.Entities
         [ForeignKey("Teacher")]
 
         public int? IdTeacher { get; set; }
+        public virtual Branch Branch { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual Teacher Teacher { get; set; }
-        public virtual Branch Branch { get; set; }
          
 
     }

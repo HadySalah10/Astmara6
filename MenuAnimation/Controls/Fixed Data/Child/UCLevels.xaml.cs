@@ -98,37 +98,45 @@ namespace Astmara6Con
         
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {
-            CollegeContext dataContext = new CollegeContext();
-            Level LevelRow = DGLevelsView.SelectedItem as Level;
-
-            Level levels = (from p in dataContext.Levels
-                            where p.Id == LevelRow.Id
-                            select p).Single();
-            if (LevelRow.Name != levels.Name)
+            try
             {
+                CollegeContext dataContext = new CollegeContext();
+                Level LevelRow = DGLevelsView.SelectedItem as Level;
 
-                try
+                Level levels = (from p in dataContext.Levels
+                                where p.Id == LevelRow.Id
+                                select p).Single();
+                if (LevelRow.Name != levels.Name)
                 {
 
-                    levels.Name = LevelRow.Name;
-                    dataContext.SaveChanges();
-                    loadData();
+                    try
+                    {
+
+                        levels.Name = LevelRow.Name;
+                        dataContext.SaveChanges();
+                        loadData();
 
 
-                    MessageBox.Show("تم تعديل الصف بنجاح");
+                        MessageBox.Show("تم تعديل الصف بنجاح");
+
+                    }
+                    catch (Exception Ex)
+                    {
+                        MessageBox.Show(Ex.Message);
+                        return;
+                    }
+                    TBNameLevels.Text = "";
 
                 }
-                catch (Exception Ex)
+                else
                 {
-                    MessageBox.Show(Ex.Message);
-                    return;
+                    MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
+
                 }
-                TBNameLevels.Text = "";
-
-            }else
-            {
-                MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
-
+                        
+            }catch(Exception ) {
+                MessageBox.Show("برجاء اختر قيمه لتعديلها!!");
+                return;
             }
         }
 
@@ -168,12 +176,7 @@ namespace Astmara6Con
         private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
         {
             CollegeContext cd = new CollegeContext();
-            Level LevelRow = DGLevelsView.SelectedItem as Level;
 
-            var result1 = (from p in cd.Levels
-                          where p.Name ==null
-                          select p);
-            if (result1 != null)
             {
                 MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -199,12 +202,7 @@ namespace Astmara6Con
 
                 }
             }
-            else
-            {
-                MessageBox.Show("لا يوجد بيانات لحذفها");
-
-
-            }
+          
 
 
 

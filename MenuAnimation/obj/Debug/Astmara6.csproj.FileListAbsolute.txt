@@ -240,4 +240,5 @@ F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csproj.CopyCom
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.exe
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.pdb
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csprojAssemblyReference.cache
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources
