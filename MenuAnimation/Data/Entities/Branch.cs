@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Data.Entities
 {
-    class Branch : BaseEntity
+    class Branch : BaseIdEntity
     {
+        public String TypeOfBranch { get; set; }
 
         public virtual ICollection<Section> Sections { get; set; }
         public virtual ICollection<StudentStatment> StudentStatments { get; set; }

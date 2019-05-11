@@ -21,7 +21,7 @@ namespace Astmara6Con.Controls
                           select p).ToList();
 
             DGDepartmentView.ItemsSource = branchs;
-            TBNameDepartment.Text = "";
+           
         }
         string STRNamePage;
         readonly FRMMainWindow Form = Application.Current.Windows[0] as FRMMainWindow;
@@ -57,7 +57,7 @@ namespace Astmara6Con.Controls
             Branch branchs = (from p in dataContext.Branches
                               where p.Id == LevelRow.Id
                             select p).Single();
-            if (LevelRow.Name != branchs.Name)
+            if (LevelRow.TypeOfBranch != branchs.TypeOfBranch)
             {
                 try
             {
@@ -66,7 +66,7 @@ namespace Astmara6Con.Controls
                     Branch departments = (from p in dataContext.Branches
                                       where p.Id == DepartmentRow.Id
                                       select p).Single();
-                departments.Name = DepartmentRow.Name;
+                departments.TypeOfBranch = DepartmentRow.TypeOfBranch;
                 dataContext.SaveChanges();
                 loadData();
 
@@ -87,53 +87,54 @@ namespace Astmara6Con.Controls
             }
         }
 
-        private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
+        private void BTNRemove_Click(object sender, RoutedEventArgs e)
         {
-
-            CollegeContext cd = new CollegeContext();
-            Branch DepartmentRow = DGDepartmentView.SelectedItem as Branch;
+            CollegeContext db = new CollegeContext();
+            Branch branchRow = DGDepartmentView.SelectedItem as Branch;
 
             try
             {
-
-
-                Branch branchs = (from p in cd.Branches
-                                    where p.Id == DepartmentRow.Id
-                                    select p).Single();
-                cd.Branches.Remove(branchs);
-                cd.SaveChanges();
+                Branch levels = (from p in db.Branches
+                                 where p.Id == branchRow.Id
+                                 select p).Single();
+                try { 
+                db.Branches.Remove(levels);
+                db.SaveChanges();
                 loadData();
+                MessageBox.Show("تم حذف الصف بنجاح");
 
-                MessageBox.Show("تم مسح العنصر بنجاح");
+                }
+                catch (Exception) { MessageBox.Show("برجاء حذف الاشياء المتعلقة بهذا الصف حتي يتم حذفة"); }
+
             }
-            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+            catch (Exception) { MessageBox.Show("برجاء اختيار العنصر حتي يتم الحذف!!"); }
 
         }
-
         private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
         {
             CollegeContext cd = new CollegeContext();
            
                 MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.Yes)
+            {
+                try
                 {
-                    try
-                    {
 
-                        cd.Sections.RemoveRange(cd.Sections);
 
-                        cd.SaveChanges();
-                        loadData();
+                    cd.Branches.RemoveRange(cd.Branches);
 
-                        MessageBox.Show("تم مسح كل البيانات");
-                    }
-                    catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+                    cd.SaveChanges();
+                    loadData();
+
+                    MessageBox.Show("تم مسح كل البيانات");
                 }
-                else if (result == MessageBoxResult.No)
-                {
-                    MessageBox.Show("لم يتم حذف شئ");
+                catch (Exception) { MessageBox.Show("برجاء حذف الاشياء المتعلقة بهذا الصف حتي يتم حذفة"); }
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                MessageBox.Show("لم يتم حذف شئ");
 
-                }
+            }
             
             
         }
@@ -143,7 +144,7 @@ namespace Astmara6Con.Controls
              CollegeContext dc = new CollegeContext();
 
             var result = (from p in dc.Branches
-                          where p.Name == TBNameDepartment.Text
+                          where p.TypeOfBranch == TBNameDepartment.Text
                           select p).SingleOrDefault();
             if (result == null)
             {
@@ -159,7 +160,7 @@ namespace Astmara6Con.Controls
                     CollegeContext db = new CollegeContext();
                     db.Branches.Add(new Branch()
                     {
-                        Name = TBNameDepartment.Text
+                        TypeOfBranch = TBNameDepartment.Text
                     });
                     db.SaveChanges();
                     loadData();
@@ -172,7 +173,6 @@ namespace Astmara6Con.Controls
                 MessageBox.Show("الاسم موجود مسبقا!!");
 
             }
-
 
         }
         private void NumberValidationTextBox(object sender, System.Windows.Input.TextCompositionEventArgs e)

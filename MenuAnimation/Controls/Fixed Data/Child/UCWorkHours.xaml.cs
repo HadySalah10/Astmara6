@@ -57,11 +57,14 @@ namespace Astmara6Con.Controls
 
         private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
         {
+
+            CollegeContext cd = new CollegeContext();
+            WorkHour WorkHourRow = DGWorkHoursView.SelectedItem as WorkHour;
+
             try
             {
+           
 
-                CollegeContext cd = new CollegeContext();
-                WorkHour WorkHourRow = DGWorkHoursView.SelectedItem as WorkHour;
 
                 WorkHour workhours = (from p in cd.WorkHours
                                     where p.Id == WorkHourRow.Id
@@ -72,8 +75,9 @@ namespace Astmara6Con.Controls
 
                 MessageBox.Show("تم مسح العنصر بنجاح");
             }
-            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
-
+            
+            
+            catch (Exception) { MessageBox.Show("برجاء اختيار العنصر حتي يتم الحذف!!"); }
         }
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)

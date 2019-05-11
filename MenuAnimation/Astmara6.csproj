@@ -72,16 +72,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Astmara6DataSet5.Designer.cs">
+    <Compile Include="Branches.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Astmara6DataSet5.xsd</DependentUpon>
+      <DependentUpon>Branches.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905101743510_Db.cs" />
-    <Compile Include="Migrations\201905101743510_Db.Designer.cs">
-      <DependentUpon>201905101743510_Db.cs</DependentUpon>
+    <Compile Include="Levels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Levels.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905110223504_Db.cs" />
+    <Compile Include="Migrations\201905110223504_Db.Designer.cs">
+      <DependentUpon>201905110223504_Db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Section.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Section.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Subjects.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Subjects.xsd</DependentUpon>
+    </Compile>
     <Compile Include="WorkHours.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -158,31 +173,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Astmara6DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Astmara6DataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Astmara6DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Astmara6DataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Astmara6DataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Astmara6DataSet2.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Astmara6DataSet3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Astmara6DataSet3.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Astmara6DataSet4.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Astmara6DataSet4.xsd</DependentUpon>
     </Compile>
     <Compile Include="Controls\Fixed Data\Child\UCCourses.xaml.cs">
       <DependentUpon>UCCourses.xaml</DependentUpon>
@@ -263,78 +253,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201905101743510_Db.resx">
-      <DependentUpon>201905101743510_Db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905110223504_Db.resx">
+      <DependentUpon>201905110223504_Db.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Astmara6DataSet.xsc">
-      <DependentUpon>Astmara6DataSet.xsd</DependentUpon>
+    <None Include="Branches.xsc">
+      <DependentUpon>Branches.xsd</DependentUpon>
     </None>
-    <None Include="Astmara6DataSet.xsd">
+    <None Include="Branches.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Astmara6DataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>Branches.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Astmara6DataSet.xss">
-      <DependentUpon>Astmara6DataSet.xsd</DependentUpon>
+    <None Include="Branches.xss">
+      <DependentUpon>Branches.xsd</DependentUpon>
     </None>
-    <None Include="Astmara6DataSet1.xsc">
-      <DependentUpon>Astmara6DataSet1.xsd</DependentUpon>
+    <None Include="Levels.xsc">
+      <DependentUpon>Levels.xsd</DependentUpon>
     </None>
-    <None Include="Astmara6DataSet1.xsd">
+    <None Include="Levels.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Astmara6DataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Levels.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Astmara6DataSet1.xss">
-      <DependentUpon>Astmara6DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="Astmara6DataSet2.xsc">
-      <DependentUpon>Astmara6DataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="Astmara6DataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Astmara6DataSet2.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Astmara6DataSet2.xss">
-      <DependentUpon>Astmara6DataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="Astmara6DataSet3.xsc">
-      <DependentUpon>Astmara6DataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="Astmara6DataSet3.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Astmara6DataSet3.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Astmara6DataSet3.xss">
-      <DependentUpon>Astmara6DataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="Astmara6DataSet4.xsc">
-      <DependentUpon>Astmara6DataSet4.xsd</DependentUpon>
-    </None>
-    <None Include="Astmara6DataSet4.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Astmara6DataSet4.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Astmara6DataSet4.xss">
-      <DependentUpon>Astmara6DataSet4.xsd</DependentUpon>
-    </None>
-    <None Include="Astmara6DataSet5.xsc">
-      <DependentUpon>Astmara6DataSet5.xsd</DependentUpon>
-    </None>
-    <None Include="Astmara6DataSet5.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Astmara6DataSet5.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Astmara6DataSet5.xss">
-      <DependentUpon>Astmara6DataSet5.xsd</DependentUpon>
+    <None Include="Levels.xss">
+      <DependentUpon>Levels.xsd</DependentUpon>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -342,6 +288,28 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Section.xsc">
+      <DependentUpon>Section.xsd</DependentUpon>
+    </None>
+    <None Include="Section.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Section.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Section.xss">
+      <DependentUpon>Section.xsd</DependentUpon>
+    </None>
+    <None Include="Subjects.xsc">
+      <DependentUpon>Subjects.xsd</DependentUpon>
+    </None>
+    <None Include="Subjects.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Subjects.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Subjects.xss">
+      <DependentUpon>Subjects.xsd</DependentUpon>
     </None>
     <None Include="WorkHours.xsc">
       <DependentUpon>WorkHours.xsd</DependentUpon>

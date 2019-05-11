@@ -59,26 +59,64 @@ namespace Astmara6Con.Controls
         }
         
         private void BTNAdd_Click(object sender, RoutedEventArgs e)
-        {
-             codee = TBCode.Text;
-              Academee = int.Parse(TBPaper.Text);
-            
-                CollegeContext db = new CollegeContext();
-            db.Subjects.Add(new Subject()
+        {  try
             {
-                Code = codee,
-                Name = TBNameCourse.Text,
-                Academic = Academee,
+                if (TBCode.Text != "" || TBNameCourse.Text != "" || TBPaper.Text != "" || TBVirtual.Text != "" || TBExprement.Text != "" ||
+                    TBCode.Text != " " || TBNameCourse.Text != " " || TBPaper.Text != " " || TBVirtual.Text != " " || TBExprement.Text != " "
+                   || TBCode.Text != "  " || TBNameCourse.Text != "  " || TBPaper.Text != "  " || TBVirtual.Text != "  " || TBExprement.Text != "  "
+                   || TBCode.Text != "   " || TBNameCourse.Text != "   " || TBPaper.Text != "   " || TBVirtual.Text != "   " || TBExprement.Text != "   "
+                        )
+                {
+                    codee = TBCode.Text;
+                    Academee = int.Parse(TBPaper.Text);
 
-                Exprement = Expremente,
-                Virtual = Virtuale,
-                TotalHours = TotalHour
-               
-            });
-            db.SaveChanges();
-            loadData();
-            MessageBox.Show("تم حفظ العملية بنجاح");
-            
+                    CollegeContext db = new CollegeContext();
+
+                    var result = (from p in db.Subjects
+                                  where p.Name == TBNameCourse.Text
+                                  select p).SingleOrDefault();
+                    var result1 = (from p in db.Subjects
+                                   where p.Code == TBCode.Text
+                                   select p).SingleOrDefault();
+                    if (result == null)
+                    {
+                        if (result1 == null)
+                        {
+
+                            db.Subjects.Add(new Subject()
+                            {
+                                Code = codee,
+                                Name = TBNameCourse.Text,
+                                Academic = Academee,
+
+                                Exprement = Expremente,
+                                Virtual = Virtuale,
+                                TotalHours = TotalHour
+
+                            });
+                            db.SaveChanges();
+                            loadData();
+                            MessageBox.Show("تم حفظ العملية بنجاح");
+                        }
+                        else
+                        {
+                            MessageBox.Show("الكود موجود مسبقا!!");
+
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("الاسم موجود مسبقا!!");
+
+                    }
+                }
+                else { MessageBox.Show("برجاء ادخال كافة المعلومات"); }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("  حدث خطب ما اعد مرة اخري  !! ");
+            }
         }
 
         private void SubjectsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -167,7 +205,6 @@ namespace Astmara6Con.Controls
             try
             {
 
-
                 CollegeContext dataContext = new CollegeContext();
                 Subject CoursesRow = DGCoursesView.SelectedItem as Subject;
                 Subject subjects = (from p in dataContext.Subjects
@@ -183,20 +220,29 @@ namespace Astmara6Con.Controls
                         if (CoursesRow.Virtual == null)
                         {
                             subjects.TotalHours = CoursesRow.Exprement + CoursesRow.Academic;
+                        dataContext.SaveChanges();
+                        loadData();
+                        MessageBox.Show("تم تعديل الصف بنجاح");
 
-                        }
+                    }
                         else if (CoursesRow.Exprement == null)
                         {
                             subjects.TotalHours = CoursesRow.Virtual + CoursesRow.Academic;
+                        dataContext.SaveChanges();
+                        loadData();
+                        MessageBox.Show("تم تعديل الصف بنجاح");
                         }
-                    }
-                    dataContext.SaveChanges();
-                    loadData();
-                    MessageBox.Show("تم تعديل الصف بنجاح");
+                    else { MessageBox.Show("لم يتم حفظ التعديل !! لحدوث خطأ ما");
+                        loadData();
+
+                          }
+
+                }
+                   
                 } 
-            catch (Exception Ex)
+            catch (Exception )
             {
-                MessageBox.Show(Ex.Message);
+                MessageBox.Show("برجاء اختيار العنصر المراد تعديلة !!");
                 return;
             }
         }
@@ -223,9 +269,14 @@ namespace Astmara6Con.Controls
 
         private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
         {
-            try
+            CollegeContext cd = new CollegeContext();
+
+            MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
             {
-                CollegeContext cd = new CollegeContext();
+              
+                    try
+            {
 
                 cd.Subjects.RemoveRange(cd.Subjects);
 
@@ -234,6 +285,12 @@ namespace Astmara6Con.Controls
                 MessageBox.Show("تم مسح كل البيانات");
             }
             catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                MessageBox.Show("لم يتم حذف شئ");
+
+            }
         }
         private void NumberValidationTextBox3(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {

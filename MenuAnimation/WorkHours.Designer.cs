@@ -283,9 +283,9 @@ namespace Astmara6 {
             
             private global::System.Data.DataColumn columnRank;
             
-            private global::System.Data.DataColumn columnAcademicOrVirtual;
-            
             private global::System.Data.DataColumn columnHoursOfQuorum;
+            
+            private global::System.Data.DataColumn columnAcademicOrVirtual;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -338,17 +338,17 @@ namespace Astmara6 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn AcademicOrVirtualColumn {
+            public global::System.Data.DataColumn HoursOfQuorumColumn {
                 get {
-                    return this.columnAcademicOrVirtual;
+                    return this.columnHoursOfQuorum;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn HoursOfQuorumColumn {
+            public global::System.Data.DataColumn AcademicOrVirtualColumn {
                 get {
-                    return this.columnHoursOfQuorum;
+                    return this.columnAcademicOrVirtual;
                 }
             }
             
@@ -389,13 +389,13 @@ namespace Astmara6 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public WorkHoursRow AddWorkHoursRow(string Rank, bool AcademicOrVirtual, int HoursOfQuorum) {
+            public WorkHoursRow AddWorkHoursRow(string Rank, int HoursOfQuorum, bool AcademicOrVirtual) {
                 WorkHoursRow rowWorkHoursRow = ((WorkHoursRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Rank,
-                        AcademicOrVirtual,
-                        HoursOfQuorum};
+                        HoursOfQuorum,
+                        AcademicOrVirtual};
                 rowWorkHoursRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowWorkHoursRow);
                 return rowWorkHoursRow;
@@ -427,8 +427,8 @@ namespace Astmara6 {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnRank = base.Columns["Rank"];
-                this.columnAcademicOrVirtual = base.Columns["AcademicOrVirtual"];
                 this.columnHoursOfQuorum = base.Columns["HoursOfQuorum"];
+                this.columnAcademicOrVirtual = base.Columns["AcademicOrVirtual"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -438,10 +438,10 @@ namespace Astmara6 {
                 base.Columns.Add(this.columnId);
                 this.columnRank = new global::System.Data.DataColumn("Rank", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRank);
-                this.columnAcademicOrVirtual = new global::System.Data.DataColumn("AcademicOrVirtual", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAcademicOrVirtual);
                 this.columnHoursOfQuorum = new global::System.Data.DataColumn("HoursOfQuorum", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHoursOfQuorum);
+                this.columnAcademicOrVirtual = new global::System.Data.DataColumn("AcademicOrVirtual", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAcademicOrVirtual);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -622,22 +622,6 @@ namespace Astmara6 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool AcademicOrVirtual {
-                get {
-                    try {
-                        return ((bool)(this[this.tableWorkHours.AcademicOrVirtualColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AcademicOrVirtual\' in table \'WorkHours\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableWorkHours.AcademicOrVirtualColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int HoursOfQuorum {
                 get {
                     try {
@@ -649,6 +633,22 @@ namespace Astmara6 {
                 }
                 set {
                     this[this.tableWorkHours.HoursOfQuorumColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool AcademicOrVirtual {
+                get {
+                    try {
+                        return ((bool)(this[this.tableWorkHours.AcademicOrVirtualColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AcademicOrVirtual\' in table \'WorkHours\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableWorkHours.AcademicOrVirtualColumn] = value;
                 }
             }
             
@@ -666,18 +666,6 @@ namespace Astmara6 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsAcademicOrVirtualNull() {
-                return this.IsNull(this.tableWorkHours.AcademicOrVirtualColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetAcademicOrVirtualNull() {
-                this[this.tableWorkHours.AcademicOrVirtualColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsHoursOfQuorumNull() {
                 return this.IsNull(this.tableWorkHours.HoursOfQuorumColumn);
             }
@@ -686,6 +674,18 @@ namespace Astmara6 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetHoursOfQuorumNull() {
                 this[this.tableWorkHours.HoursOfQuorumColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsAcademicOrVirtualNull() {
+                return this.IsNull(this.tableWorkHours.AcademicOrVirtualColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetAcademicOrVirtualNull() {
+                this[this.tableWorkHours.AcademicOrVirtualColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -850,44 +850,44 @@ namespace Astmara6.WorkHoursTableAdapters {
             tableMapping.DataSetTable = "WorkHours";
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("Rank", "Rank");
-            tableMapping.ColumnMappings.Add("AcademicOrVirtual", "AcademicOrVirtual");
             tableMapping.ColumnMappings.Add("HoursOfQuorum", "HoursOfQuorum");
+            tableMapping.ColumnMappings.Add("AcademicOrVirtual", "AcademicOrVirtual");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[WorkHours] WHERE (([Id] = @Original_Id) AND ((@IsNull_Rank = 1 AND [Rank] IS NULL) OR ([Rank] = @Original_Rank)) AND ((@IsNull_AcademicOrVirtual = 1 AND [AcademicOrVirtual] IS NULL) OR ([AcademicOrVirtual] = @Original_AcademicOrVirtual)) AND ((@IsNull_HoursOfQuorum = 1 AND [HoursOfQuorum] IS NULL) OR ([HoursOfQuorum] = @Original_HoursOfQuorum)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[WorkHours] WHERE (([Id] = @Original_Id) AND ((@IsNull_Rank = 1 AND [Rank] IS NULL) OR ([Rank] = @Original_Rank)) AND ((@IsNull_HoursOfQuorum = 1 AND [HoursOfQuorum] IS NULL) OR ([HoursOfQuorum] = @Original_HoursOfQuorum)) AND ((@IsNull_AcademicOrVirtual = 1 AND [AcademicOrVirtual] IS NULL) OR ([AcademicOrVirtual] = @Original_AcademicOrVirtual)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Rank", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rank", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rank", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rank", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AcademicOrVirtual", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AcademicOrVirtual", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_HoursOfQuorum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HoursOfQuorum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HoursOfQuorum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HoursOfQuorum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AcademicOrVirtual", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AcademicOrVirtual", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[WorkHours] ([Rank], [AcademicOrVirtual], [HoursOfQuorum]) VALU" +
-                "ES (@Rank, @AcademicOrVirtual, @HoursOfQuorum);\r\nSELECT Id, Rank, AcademicOrVirt" +
-                "ual, HoursOfQuorum FROM WorkHours WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[WorkHours] ([Rank], [HoursOfQuorum], [AcademicOrVirtual]) VALU" +
+                "ES (@Rank, @HoursOfQuorum, @AcademicOrVirtual);\r\nSELECT Id, Rank, HoursOfQuorum," +
+                " AcademicOrVirtual FROM WorkHours WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rank", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rank", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AcademicOrVirtual", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HoursOfQuorum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HoursOfQuorum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AcademicOrVirtual", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[WorkHours] SET [Rank] = @Rank, [AcademicOrVirtual] = @AcademicOrVirtual, [HoursOfQuorum] = @HoursOfQuorum WHERE (([Id] = @Original_Id) AND ((@IsNull_Rank = 1 AND [Rank] IS NULL) OR ([Rank] = @Original_Rank)) AND ((@IsNull_AcademicOrVirtual = 1 AND [AcademicOrVirtual] IS NULL) OR ([AcademicOrVirtual] = @Original_AcademicOrVirtual)) AND ((@IsNull_HoursOfQuorum = 1 AND [HoursOfQuorum] IS NULL) OR ([HoursOfQuorum] = @Original_HoursOfQuorum)));
-SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM WorkHours WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[WorkHours] SET [Rank] = @Rank, [HoursOfQuorum] = @HoursOfQuorum, [AcademicOrVirtual] = @AcademicOrVirtual WHERE (([Id] = @Original_Id) AND ((@IsNull_Rank = 1 AND [Rank] IS NULL) OR ([Rank] = @Original_Rank)) AND ((@IsNull_HoursOfQuorum = 1 AND [HoursOfQuorum] IS NULL) OR ([HoursOfQuorum] = @Original_HoursOfQuorum)) AND ((@IsNull_AcademicOrVirtual = 1 AND [AcademicOrVirtual] IS NULL) OR ([AcademicOrVirtual] = @Original_AcademicOrVirtual)));
+SELECT Id, Rank, HoursOfQuorum, AcademicOrVirtual FROM WorkHours WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rank", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rank", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AcademicOrVirtual", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HoursOfQuorum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HoursOfQuorum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AcademicOrVirtual", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Rank", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rank", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rank", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rank", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AcademicOrVirtual", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AcademicOrVirtual", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_HoursOfQuorum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HoursOfQuorum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HoursOfQuorum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HoursOfQuorum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AcademicOrVirtual", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AcademicOrVirtual", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcademicOrVirtual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -904,7 +904,7 @@ SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM WorkHours WHERE (Id = @Id
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM dbo.WorkHours";
+            this._commandCollection[0].CommandText = "SELECT Id, Rank, HoursOfQuorum, AcademicOrVirtual FROM dbo.WorkHours";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -965,7 +965,7 @@ SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM WorkHours WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_Rank, global::System.Nullable<bool> Original_AcademicOrVirtual, global::System.Nullable<int> Original_HoursOfQuorum) {
+        public virtual int Delete(int Original_Id, string Original_Rank, global::System.Nullable<int> Original_HoursOfQuorum, global::System.Nullable<bool> Original_AcademicOrVirtual) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             if ((Original_Rank == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -975,17 +975,17 @@ SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM WorkHours WHERE (Id = @Id
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Rank));
             }
-            if ((Original_AcademicOrVirtual.HasValue == true)) {
+            if ((Original_HoursOfQuorum.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_AcademicOrVirtual.Value));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_HoursOfQuorum.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Original_HoursOfQuorum.HasValue == true)) {
+            if ((Original_AcademicOrVirtual.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_HoursOfQuorum.Value));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_AcademicOrVirtual.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
@@ -1011,21 +1011,21 @@ SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM WorkHours WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Rank, global::System.Nullable<bool> AcademicOrVirtual, global::System.Nullable<int> HoursOfQuorum) {
+        public virtual int Insert(string Rank, global::System.Nullable<int> HoursOfQuorum, global::System.Nullable<bool> AcademicOrVirtual) {
             if ((Rank == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Rank));
             }
-            if ((AcademicOrVirtual.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((bool)(AcademicOrVirtual.Value));
+            if ((HoursOfQuorum.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(HoursOfQuorum.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((HoursOfQuorum.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(HoursOfQuorum.Value));
+            if ((AcademicOrVirtual.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(AcademicOrVirtual.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -1050,21 +1050,21 @@ SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM WorkHours WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Rank, global::System.Nullable<bool> AcademicOrVirtual, global::System.Nullable<int> HoursOfQuorum, int Original_Id, string Original_Rank, global::System.Nullable<bool> Original_AcademicOrVirtual, global::System.Nullable<int> Original_HoursOfQuorum, int Id) {
+        public virtual int Update(string Rank, global::System.Nullable<int> HoursOfQuorum, global::System.Nullable<bool> AcademicOrVirtual, int Original_Id, string Original_Rank, global::System.Nullable<int> Original_HoursOfQuorum, global::System.Nullable<bool> Original_AcademicOrVirtual, int Id) {
             if ((Rank == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Rank));
             }
-            if ((AcademicOrVirtual.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((bool)(AcademicOrVirtual.Value));
+            if ((HoursOfQuorum.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(HoursOfQuorum.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((HoursOfQuorum.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(HoursOfQuorum.Value));
+            if ((AcademicOrVirtual.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(AcademicOrVirtual.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -1078,17 +1078,17 @@ SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM WorkHours WHERE (Id = @Id
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Rank));
             }
-            if ((Original_AcademicOrVirtual.HasValue == true)) {
+            if ((Original_HoursOfQuorum.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Original_AcademicOrVirtual.Value));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_HoursOfQuorum.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((Original_HoursOfQuorum.HasValue == true)) {
+            if ((Original_AcademicOrVirtual.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_HoursOfQuorum.Value));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(Original_AcademicOrVirtual.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
@@ -1115,8 +1115,8 @@ SELECT Id, Rank, AcademicOrVirtual, HoursOfQuorum FROM WorkHours WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Rank, global::System.Nullable<bool> AcademicOrVirtual, global::System.Nullable<int> HoursOfQuorum, int Original_Id, string Original_Rank, global::System.Nullable<bool> Original_AcademicOrVirtual, global::System.Nullable<int> Original_HoursOfQuorum) {
-            return this.Update(Rank, AcademicOrVirtual, HoursOfQuorum, Original_Id, Original_Rank, Original_AcademicOrVirtual, Original_HoursOfQuorum, Original_Id);
+        public virtual int Update(string Rank, global::System.Nullable<int> HoursOfQuorum, global::System.Nullable<bool> AcademicOrVirtual, int Original_Id, string Original_Rank, global::System.Nullable<int> Original_HoursOfQuorum, global::System.Nullable<bool> Original_AcademicOrVirtual) {
+            return this.Update(Rank, HoursOfQuorum, AcademicOrVirtual, Original_Id, Original_Rank, Original_HoursOfQuorum, Original_AcademicOrVirtual, Original_Id);
         }
     }
     

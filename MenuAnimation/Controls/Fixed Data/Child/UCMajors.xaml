@@ -10,14 +10,13 @@
     <UserControl.Resources>
         <Color x:Key="1">#FF3580BF</Color>
         <Color x:Key="Color1\">#FFECE3E3</Color>
-        <Astmara6:Astmara6DataSet3 x:Key="astmara6DataSet3"/>
-        <CollectionViewSource x:Key="sectionsViewSource" Source="{Binding Sections, Source={StaticResource astmara6DataSet3}}"/>
-        <Astmara6:Astmara6DataSet2 x:Key="astmara6DataSet2"/>
-        <CollectionViewSource x:Key="branchesViewSource" Source="{Binding Branches, Source={StaticResource astmara6DataSet2}}"/>
-        <Astmara6:Astmara6DataSet5 x:Key="astmara6DataSet5"/>
-        <CollectionViewSource x:Key="branchesViewSource1" Source="{Binding Branches, Source={StaticResource astmara6DataSet5}}"/>
+        <Astmara6:Branches x:Key="branches"/>
+        <CollectionViewSource x:Key="branchesViewSource" Source="{Binding _Branches, Source={StaticResource branches}}"/>
+        <Astmara6:Section x:Key="section"/>
+        <CollectionViewSource x:Key="sectionsViewSource" Source="{Binding Sections, Source={StaticResource section}}"/>
+       
     </UserControl.Resources>
-    <Grid DataContext="{StaticResource sectionsViewSource}">
+    <Grid DataContext="{StaticResource branchesViewSource}"  >
         <Label Content="اسم القسم" HorizontalAlignment="Left" Margin="658,226,0,0" VerticalAlignment="Top" Background="{x:Null}">
             <Label.Foreground>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
@@ -48,29 +47,27 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
         </Button>
-        <DataGrid x:Name="DGMajorsView" AutoGenerateColumns="False" FlowDirection="RightToLeft" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource branchesViewSource}}" Margin="346,284,0,0" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="BranchesDataGrid_SelectionChanged" BindingGroup="{Binding Id, Mode=OneWay}">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Visibility="Hidden" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="idSectionColumn" Binding="{Binding IdSection}" Header="Id Section" Visibility="Hidden" Width="SizeToHeader"/>
-                <DataGridTextColumn  Binding="{Binding Section.Id}" Header="Id" IsReadOnly="True" Visibility="Hidden" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding Section.TypeOfSection}" Header="القسم" Width="Auto"/>
-                <DataGridTextColumn Binding="{Binding Name}" Header="الشعبة" Width="Auto"/>
-
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="451,294,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
-        <Button x:Name="BTNEdit" Content="تعديل" HorizontalAlignment="Left" Margin="522,294,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
-        <Button x:Name="BTNRemoveAll" Content="حذف الكل" HorizontalAlignment="Left" Margin="348,294,0,0" VerticalAlignment="Top" Width="98" Height="28" Click="BTNRemoveAll_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
-        <ComboBox x:Name="CBNameDepartment" Foreground="White" DisplayMemberPath="Name"  ItemsSource="{Binding Source={StaticResource branchesViewSource1}}" Margin="536,226,93,228" SelectedValuePath="Id" Height="30">
-            <ComboBox.Background>
-                <SolidColorBrush Color="black"/>
-            </ComboBox.Background>
+        <ComboBox x:Name="CBNameDepartment" DisplayMemberPath="TypeOfBranch" Height="28" ItemsSource="{Binding}" Margin="536,226,99,230" SelectedValuePath="Id">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel/>
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
+        <DataGrid x:Name="DGMajorsView" FlowDirection="RightToLeft" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource sectionsViewSource}}" Margin="309,286,0,0" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding Id}" Header="Id" IsReadOnly="True" Visibility="Hidden" Width="SizeToHeader"/>
+                <DataGridTextColumn  Binding="{Binding IdBranch}" Header="Id Branch" Visibility="Hidden" Width="SizeToHeader"/>
+                <DataGridTextColumn  Binding="{Binding TypeOfBranch }" IsReadOnly="True" Header="القسم" Width="Auto"/>
+
+                <DataGridTextColumn  Binding="{Binding Name}" Header="الشعبة" IsReadOnly="True" Width="Auto"/>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="BTNEdit" Content="تعديل" HorizontalAlignment="Left" Margin="488,295,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
+        <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="417,295,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <Button x:Name="BTNRemoveAll" Content="حذف الكل" HorizontalAlignment="Left" Margin="314,295,0,0" VerticalAlignment="Top" Width="98" Height="28" Click="BTNRemoveAll_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
 
 
 

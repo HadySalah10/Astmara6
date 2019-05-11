@@ -5,6 +5,7 @@ using System.Linq;
 using Data.Entities;
 using System;
 using System.Text.RegularExpressions;
+using System.Windows.Data;
 
 namespace Astmara6Con.Controls
 {
@@ -17,27 +18,23 @@ namespace Astmara6Con.Controls
         {
             CollegeContext cd = new CollegeContext();
 
-            var sections = (from p in cd.Sections
-                            select p).ToList();
-            var branchs = (from p in cd.Branches
-                           select p).ToList();
+            var query = (from p1 in cd.Branches
+                        join f1 in cd.Sections on p1.Id equals f1.IdBranch
+                        select new { p1.TypeOfBranch, f1.Name }).ToList();
 
-            DGMajorsView.ItemsSource = sections;
-            DGMajorsView.ItemsSource = branchs;
+            //var query = (from p in cd.Levels
+            //              select p).ToList();
+            DGMajorsView.ItemsSource = query;
         }
         public void TakeDataFromCombo()
         {
-            if (CBNameDepartment.SelectedItem == null)
-            {
-                MessageBox.Show("يرجي ادخال  القسم");
-            }
-            else
-            {
+            
+           
                 CollegeContext cd = new CollegeContext();
-                Section SectionCB = CBNameDepartment.SelectedItem as Section;
+                Branch SectionCB = CBNameDepartment.SelectedItem as Branch;
                 CollegeContext db = new CollegeContext();
 
-                var result = (from p in db.Branches
+                var result = (from p in db.Sections
                               where p.Name == TBNameMajors.Text
                               select p).SingleOrDefault();
                 if (result == null)
@@ -49,13 +46,11 @@ namespace Astmara6Con.Controls
                     }
                     else
                     {
-                        Branch branchs = (from p in cd.Branches
-                                            where p.Id == SectionCB.Id
-                                            select p).Single();
+                                          
 
                         cd.Sections.Add(new Section()
                         {
-                            Id = SectionCB.Id,
+                            IdBranch = SectionCB.Id,
                             Name = TBNameMajors.Text
                         });
                         cd.SaveChanges();
@@ -69,7 +64,7 @@ namespace Astmara6Con.Controls
 
                 }
                 TBNameMajors.Text = "";
-            }
+            
         }
         public void loadDataCombo()
         {
@@ -119,41 +114,42 @@ namespace Astmara6Con.Controls
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {
-        //    CollegeContext dataContext = new CollegeContext();
-        //    Branch DepartmentRow = DGMajorsView.SelectedItem as Branch;
-        //    Branch levels = (from p in dataContext.Branches
-        //                     where p.Id == DepartmentRow.Id
-        //                     select p).Single();
-            //if (DepartmentRow.Name != levels.Name)
-            //{
 
-            //    try
-            //    {
+            CollegeContext dataContext = new CollegeContext();
+            Section SectionRow = DGMajorsView.SelectedItem as Section;
+            Section sections = (from p in dataContext.Sections
+                             where p.Id == SectionRow.Id
+                             select p).Single();
+            if (SectionRow.Name != sections.Name)
+            {
 
-
-
-            //        Branch departments = (from p in dataContext.Branches
-            //                              where p.Id == DepartmentRow.Id
-            //                              select p).Single();
-            //        departments.Name = DepartmentRow.Name;
-            //        dataContext.SaveChanges();
-            //        loadData();
+                try
+                {
 
 
-            //        MessageBox.Show("تم تعديل الصف بنجاح");
 
-            //    }
-            //    catch (Exception Ex)
-            //    {
-            //        MessageBox.Show(Ex.Message);
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
+                    Branch departments = (from p in dataContext.Branches
+                                          where p.Id == SectionRow.Id
+                                          select p).Single();
+                    sections.Name = SectionRow.Name;
+                    dataContext.SaveChanges();
+                    loadData();
 
-            //}
+
+                    MessageBox.Show("تم تعديل الصف بنجاح");
+
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
+
+            }
         }
 
         private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
@@ -162,12 +158,12 @@ namespace Astmara6Con.Controls
             {
 
                 CollegeContext cd = new CollegeContext();
-                Branch BranchRow = DGMajorsView.SelectedItem as Branch;
+                Section BranchRow = DGMajorsView.SelectedItem as Section;
 
-                Branch branchs = (from p in cd.Branches
+                Section sections = (from p in cd.Sections
                                   where p.Id == BranchRow.Id
-                                  select p).Single();
-                cd.Branches.Remove(branchs);
+                                  select p).SingleOrDefault();
+                cd.Sections.Remove(sections);
                 cd.SaveChanges();
                 loadData();
 
@@ -182,42 +178,33 @@ namespace Astmara6Con.Controls
             Level LevelRow = DGMajorsView.SelectedItem as Level;
 
 
-            //var result1 = (from p in cd.Branches
-            //               where p.Name == null
-            //               select p);
-            //if (result1 != null)
-            //{
-            //    MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
+          
+                MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
 
-            //    if (result == MessageBoxResult.Yes)
-            //    {
+                if (result == MessageBoxResult.Yes)
+                {
 
-            //        try
-            //        {
+                    try
+                    {
 
-            //            cd.Branches.RemoveRange(cd.Branches);
+                        cd.Branches.RemoveRange(cd.Branches);
 
-            //            cd.SaveChanges();
-            //            loadData();
+                        cd.SaveChanges();
+                        loadData();
 
-            //            MessageBox.Show("تم مسح كل البيانات");
-            //        }
-            //        catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
-            //    }
-            //    else if (result == MessageBoxResult.No)
-            //    {
-            //        MessageBox.Show("لم يتم حذف شئ");
+                        MessageBox.Show("تم مسح كل البيانات");
+                    }
+                    catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    MessageBox.Show("لم يتم حذف شئ");
 
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("لا يوجد بيانات لحذفها");
-
-
-            //}
-        }
+                }
+            }
+          
+        
 
         private void CBNameDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -233,6 +220,20 @@ namespace Astmara6Con.Controls
 
         private void CBNameDepartment_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+
+        }
+
+        private void DGMajorsView_CurrentCellChanged(object sender, EventArgs e)
+        {
+          
+
+
+        }
+
+        private void DGMajorsView_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            Binding binding = new Binding();
+            binding.Mode = BindingMode.TwoWay;
 
         }
     }

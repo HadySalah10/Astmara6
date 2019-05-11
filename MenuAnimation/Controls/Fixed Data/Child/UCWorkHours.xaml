@@ -11,6 +11,7 @@
         <Color x:Key="1">#FF3580BF</Color>
         <Astmara6:WorkHours x:Key="workHours"/>
         <CollectionViewSource x:Key="workHoursViewSource" Source="{Binding _WorkHours, Source={StaticResource workHours}}"/>
+
     </UserControl.Resources>
     <Grid DataContext="{StaticResource workHoursViewSource}" >
         <TextBox x:Name="TBRank" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox" Height="31" Margin="553,212,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="91" Background="#FFECE3E3" TextChanged="TBRank_TextChanged" >
@@ -33,7 +34,7 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
-        <Button x:Name="BTNAdd" Content="اضافة" HorizontalAlignment="Left" Margin="229,284,0,0" VerticalAlignment="Top" Width="88" Height="28" Click="BTNAdd_Click_1" >
+        <Button x:Name="BTNAdd" Content="اضافة" HorizontalAlignment="Left" Margin="229,283,0,0" VerticalAlignment="Top" Width="88" Height="28" Click="BTNAdd_Click_1" >
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
@@ -50,13 +51,13 @@
         </Button>
         <RadioButton  x:Name="Paper" Content="نظري" HorizontalAlignment="Left" Margin="460,255,0,0" VerticalAlignment="Top" Foreground="#FF3580BF" Checked="RadioButton_Checked"/>
         <RadioButton x:Name="Virtual" Content="عملي" HorizontalAlignment="Left" Margin="364,255,0,0" VerticalAlignment="Top" Foreground="#FF3580BF"/>
-        <DataGrid x:Name="DGWorkHoursView" AutoGenerateColumns="False" FlowDirection="RightToLeft" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="322,284,0,0" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="DGWorkHoursView" FlowDirection="RightToLeft" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="322,283,0,1" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Id}" Header="Id" IsReadOnly="True" Visibility="Hidden" Width="SizeToHeader"/>
-                <DataGridTextColumn  Binding="{Binding Rank}" Header="الرتبة" Width="Auto"/>
-                <DataGridCheckBoxColumn  Binding="{Binding AcademicOrVirtual}" Visibility="Hidden" Header="Academic Or Virtual" Width="Auto"/>
-                
-                <DataGridTextColumn Binding="{Binding HoursOfQuorum}"  Header="النصاب القانوني" Width="Auto"/>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Visibility="Hidden" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="rankColumn" Binding="{Binding Rank}" Header="ألرتبة" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="hoursOfQuorumColumn" Binding="{Binding HoursOfQuorum}" Header="النصاب القانوني" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="academicOrVirtualColumn" Visibility="Hidden" Binding="{Binding AcademicOrVirtual}" Header="Academic Or Virtual" Width="SizeToHeader"/>
+
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="BTNEdit" Content="تعديل" HorizontalAlignment="Left" Margin="498,294,0,0" VerticalAlignment="Top" Width="67" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
