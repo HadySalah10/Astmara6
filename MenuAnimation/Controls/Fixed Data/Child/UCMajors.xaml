@@ -14,7 +14,7 @@
         <CollectionViewSource x:Key="branchesViewSource" Source="{Binding _Branches, Source={StaticResource branches}}"/>
         <Astmara6:Section x:Key="section"/>
         <CollectionViewSource x:Key="sectionsViewSource" Source="{Binding Sections, Source={StaticResource section}}"/>
-       
+
     </UserControl.Resources>
     <Grid DataContext="{StaticResource branchesViewSource}"  >
         <Label Content="اسم القسم" HorizontalAlignment="Left" Margin="658,226,0,0" VerticalAlignment="Top" Background="{x:Null}">
@@ -54,20 +54,17 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <DataGrid x:Name="DGMajorsView" FlowDirection="RightToLeft" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource sectionsViewSource}}" Margin="309,286,0,0" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="DGMajorsView" FlowDirection="RightToLeft" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource sectionsViewSource}}" Margin="309,286,0,0" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DGMajorsView_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn  Binding="{Binding Id}" Header="Id" IsReadOnly="True" Visibility="Hidden" Width="SizeToHeader"/>
                 <DataGridTextColumn  Binding="{Binding IdBranch}" Header="Id Branch" Visibility="Hidden" Width="SizeToHeader"/>
-                <DataGridTextColumn  Binding="{Binding TypeOfBranch }" IsReadOnly="True" Header="القسم" Width="Auto"/>
-
-                <DataGridTextColumn  Binding="{Binding Name}" Header="الشعبة" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn  Binding="{Binding  Name}" Header="الشعبة" Width="Auto"/>
+                <DataGridTextColumn  Binding="{Binding TypeOfBranch }"  Header="القسم" Width="Auto"/>
 
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BTNEdit" Content="تعديل" HorizontalAlignment="Left" Margin="488,295,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
-        <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="417,295,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
-        <Button x:Name="BTNRemoveAll" Content="حذف الكل" HorizontalAlignment="Left" Margin="314,295,0,0" VerticalAlignment="Top" Width="98" Height="28" Click="BTNRemoveAll_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <Button x:Name="BTNEdit" Content="تعديل و حذف" HorizontalAlignment="Left" Margin="432,295,0,0" VerticalAlignment="Top" Width="122" Height="31" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
 
 
 

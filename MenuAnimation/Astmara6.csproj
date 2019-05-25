@@ -77,16 +77,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Branches.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Fixed Data\Edit\UCEditDoctor.xaml.cs">
+      <DependentUpon>UCEditDoctor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Fixed Data\Edit\UCEditMajors.xaml.cs">
+      <DependentUpon>UCEditMajors.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Levels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Levels.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905110223504_Db.cs" />
-    <Compile Include="Migrations\201905110223504_Db.Designer.cs">
-      <DependentUpon>201905110223504_Db.cs</DependentUpon>
+    <Compile Include="Migrations\201905242101011_Db.cs" />
+    <Compile Include="Migrations\201905242101011_Db.Designer.cs">
+      <DependentUpon>201905242101011_Db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="NameDoctor.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NameDoctor.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Rank.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rank.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Section.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,6 +112,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Subjects.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Teachers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Teachers.xsd</DependentUpon>
     </Compile>
     <Compile Include="WorkHours.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -113,6 +134,14 @@
     <Page Include="Controls\Fixed Data\Child\UCDoctors.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Fixed Data\Edit\UCEditDoctor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Fixed Data\Edit\UCEditMajors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Fixed Data\UCFixedData.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -253,8 +282,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201905110223504_Db.resx">
-      <DependentUpon>201905110223504_Db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905242101011_Db.resx">
+      <DependentUpon>201905242101011_Db.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -282,12 +311,34 @@
     <None Include="Levels.xss">
       <DependentUpon>Levels.xsd</DependentUpon>
     </None>
+    <None Include="NameDoctor.xsc">
+      <DependentUpon>NameDoctor.xsd</DependentUpon>
+    </None>
+    <None Include="NameDoctor.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NameDoctor.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NameDoctor.xss">
+      <DependentUpon>NameDoctor.xsd</DependentUpon>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Rank.xsc">
+      <DependentUpon>Rank.xsd</DependentUpon>
+    </None>
+    <None Include="Rank.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Rank.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Rank.xss">
+      <DependentUpon>Rank.xsd</DependentUpon>
     </None>
     <None Include="Section.xsc">
       <DependentUpon>Section.xsd</DependentUpon>
@@ -310,6 +361,17 @@
     </None>
     <None Include="Subjects.xss">
       <DependentUpon>Subjects.xsd</DependentUpon>
+    </None>
+    <None Include="Teachers.xsc">
+      <DependentUpon>Teachers.xsd</DependentUpon>
+    </None>
+    <None Include="Teachers.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Teachers.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Teachers.xss">
+      <DependentUpon>Teachers.xsd</DependentUpon>
     </None>
     <None Include="WorkHours.xsc">
       <DependentUpon>WorkHours.xsd</DependentUpon>

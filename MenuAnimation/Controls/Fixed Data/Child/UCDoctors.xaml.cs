@@ -1,5 +1,11 @@
-﻿using System.Windows;
+﻿using Data.Context;
+using System.Windows;
 using System.Windows.Controls;
+using System.Linq;
+using Data.Entities;
+using System;
+using System.Text.RegularExpressions;
+using System.Windows.Data;
 
 
 namespace Astmara6Con.Controls
@@ -9,15 +15,66 @@ namespace Astmara6Con.Controls
     /// </summary>
     public partial class UCDoctors : UserControl
     {
+        public void loadData()
+        {
+            CollegeContext cd = new CollegeContext();
+            
+
+            var query = (from p1 in cd.WorkHours
+                         join f1 in cd.Teachers on p1.Id equals f1.IdWorkHours
+                         select new { p1.Rank,p1.HoursOfQuorum ,f1.Name,f1.NickName }).ToList();
+
+            //var teachers = (from p in cd.Teachers
+            //                select p).ToList();
+            //var workhours = (from p1 in cd.WorkHours
+            //                 join f1 in cd.Teachers on p1.Id equals f1.IdWorkHours
+            //                 select new { p1.Rank, p1.HoursOfQuorum }).ToList();
+
+
+            //DGDoctorsView.ItemsSource = teachers;
+            _WorkHoursDataGrid.ItemsSource = query;
+
+        }
+        public void loadDataCombodegree()
+        {
+            CollegeContext cd = new CollegeContext();
+
+            var workHours = (from p in cd.WorkHours
+                           select p).ToList();
+
+            degree.ItemsSource = workHours;
+        }
+        public void loadDataComboSubject()
+        {
+            CollegeContext cd = new CollegeContext();
+
+            var subjects = (from p in cd.Subjects
+                             select p).ToList();
+
+            _SubjectsComboBox.ItemsSource = subjects;
+        }
+        public void loadDataCombodepartment1()
+        {
+            CollegeContext cd = new CollegeContext();
+
+            var branchs = (from p in cd.Branches
+                             select p).ToList();
+
+            department1.ItemsSource = branchs;
+        }
         string STRNamePage;
         readonly FRMMainWindow Form = Application.Current.Windows[0] as FRMMainWindow;
 
         public UCDoctors()
         {
             InitializeComponent();
+            loadData();
+            loadDataCombodegree();
+            loadDataCombodepartment1();
+            loadDataComboSubject();
         }
 
-   
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -34,6 +91,150 @@ namespace Astmara6Con.Controls
             //Form.gridShow.Children.Add(new UCAssistant());
             //STRNamePage = "المعيدين";
             //Form.ChFormName(STRNamePage);
+
+        }
+
+        private void Button_AddClick(object sender, RoutedEventArgs e)
+        {
+
+            CollegeContext cd = new CollegeContext();
+            WorkHour degreeCB = degree.SelectedItem as WorkHour;
+            Branch departmentCB = department1.SelectedItem as Branch;
+            Subject SubjectCb = _SubjectsComboBox.SelectedItem as Subject;
+
+            CollegeContext db = new CollegeContext();
+
+            var result = (from p in db.Teachers
+                          where p.Name == cou_name.Text
+                          select p).SingleOrDefault();
+            var result1 = (from p in db.Teachers
+                          where p.NickName == cou_nic_name.Text
+                          select p).SingleOrDefault();
+            if (result == null || result1==null)
+            {
+                if (cou_name.Text == "" || cou_name.Text == " " || cou_name.Text == "  " || cou_name.Text == "   " || cou_name.Text == "    " ||
+                cou_nic_name.Text == "" || cou_nic_name.Text == " " || cou_nic_name.Text == "  " || cou_nic_name.Text == "   " || cou_nic_name.Text == "    ")
+                    
+                {
+                    MessageBox.Show("انت لم تدخل شيئا!!");
+
+                }
+                else
+                {
+                   
+
+                    cd.Teachers.Add(new Teacher()
+                    {
+                       
+                        IdWorkHours = degreeCB.Id,
+                        Name = cou_name.Text,
+                        NickName=cou_nic_name.Text
+
+                        
+                    });
+                    cd.SaveChanges();
+                    loadData();
+
+                    var getIdteach = (from p in db.Teachers
+                                  where cou_name.Text == p.Name 
+                                  select p.Id).SingleOrDefault();
+                    var getIdsub = (from p in db.Subjects
+                                 where _SubjectsComboBox.Text == p.Name
+                                 select p.Id).SingleOrDefault();
+                    cd.SubjectTeachers.Add(new SubjectTeacher()
+                    {
+                        IdBranch= departmentCB.Id,
+                        IdTeacher= getIdteach,
+                        IdSubject= getIdsub
+
+                    });
+                    cd.SaveChanges();
+                    loadData();
+                    MessageBox.Show("تم حفظ البيانات بنجاح ");
+                }
+            }
+            else
+            {
+                MessageBox.Show("الاسم او اللقب موجود مسبقا!!");
+
+            }
+            cou_name.Text = "";
+            cou_nic_name.Text = "";
+
+
+        }
+
+        private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                CollegeContext cd = new CollegeContext();
+                Teacher teacherRow = _WorkHoursDataGrid.SelectedItem as Teacher;
+
+                Teacher teachers = (from p in cd.Teachers
+                                    where p.Id == teacherRow.Id
+                                    select p).SingleOrDefault();
+                cd.Teachers.Remove(teachers);
+                cd.SaveChanges();
+                loadData();
+
+                MessageBox.Show("تم مسح العنصر بنجاح");
+            }
+            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+
+        }
+
+        private void BTNEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
+        //CollegeContext dataContext = new CollegeContext();
+        //Teacher doctorRow = _WorkHoursDataGrid.SelectedItem as Teacher;
+
+        //Teacher teachers = (from p in dataContext.Teachers
+        //                    where p.Id == doctorRow.Id
+        //                    select p).Single();
+          
+
+        //    if (doctorRow.Name != teachers.Name || doctorRow.NickName != teachers.NickName)
+                
+        //    {
+
+                
+        //            try
+        //            {
+
+
+
+        //                 Teacher teachers1 = (from p in dataContext.Teachers
+        //                                      where p.Id == doctorRow.Id
+        //                                      select p).Single();
+        //teachers1.Name = doctorRow.Name;
+        //                dataContext.SaveChanges();
+        //                loadData();
+
+
+        //MessageBox.Show("تم تعديل الصف بنجاح");
+
+        //            }
+        //            catch (Exception Ex)
+        //            {
+        //                MessageBox.Show(Ex.Message);
+        //                return;
+        //            }
+                
+                
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
+
+        //    }
+        private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
+        {
 
         }
     }

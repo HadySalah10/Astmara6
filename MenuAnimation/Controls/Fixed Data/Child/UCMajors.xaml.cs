@@ -6,6 +6,8 @@ using Data.Entities;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Data;
+using System.Collections.Generic;
+using Astmara6.Controls.Fixed_Data.Edit;
 
 namespace Astmara6Con.Controls
 {
@@ -19,8 +21,31 @@ namespace Astmara6Con.Controls
             CollegeContext cd = new CollegeContext();
 
             var query = (from p1 in cd.Branches
-                        join f1 in cd.Sections on p1.Id equals f1.IdBranch
-                        select new { p1.TypeOfBranch, f1.Name }).ToList();
+                                        join f1 in cd.Sections on p1.Id equals f1.IdBranch
+                                        select new { p1.TypeOfBranch, f1.Name }).ToList();
+             
+   
+    
+          
+
+                 
+            //var query = (from p1 in cd.Sections   
+            //              from f1 in cd.Branches
+
+            //                    where f1.Id ==p1.IdBranch
+
+            //             select p1.Name).ToList();
+            //IEnumerable<Section,> drew = (
+            //                          from p in cd.Sections
+            //                          from f in cd.Branches
+            //                          where
+            //                            f.Id == p.IdBranch
+            //                          select p.Name )
+            //                           .Union(from d  in cd.Branches
+
+            //                                  select d.TypeOfBranch);
+
+
 
             //var query = (from p in cd.Levels
             //              select p).ToList();
@@ -114,95 +139,65 @@ namespace Astmara6Con.Controls
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {
+            Form.gridShow.Children.Clear();
+            Form.gridShow.Children.Add(new UCEditMajors());
+            STRNamePage = "تعديل الشعب";
+            Form.ChFormName(STRNamePage);
 
-            CollegeContext dataContext = new CollegeContext();
-            Section SectionRow = DGMajorsView.SelectedItem as Section;
-            Section sections = (from p in dataContext.Sections
-                             where p.Id == SectionRow.Id
-                             select p).Single();
-            if (SectionRow.Name != sections.Name)
-            {
-
-                try
-                {
-
-
-
-                    Branch departments = (from p in dataContext.Branches
-                                          where p.Id == SectionRow.Id
-                                          select p).Single();
-                    sections.Name = SectionRow.Name;
-                    dataContext.SaveChanges();
-                    loadData();
-
-
-                    MessageBox.Show("تم تعديل الصف بنجاح");
-
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message);
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
-
-            }
+           
         }
 
-        private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
+        //private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
 
-                CollegeContext cd = new CollegeContext();
-                Section BranchRow = DGMajorsView.SelectedItem as Section;
+        //        CollegeContext cd = new CollegeContext();
+        //        Section BranchRow = DGMajorsView.SelectedItem as Section;
 
-                Section sections = (from p in cd.Sections
-                                  where p.Id == BranchRow.Id
-                                  select p).SingleOrDefault();
-                cd.Sections.Remove(sections);
-                cd.SaveChanges();
-                loadData();
+        //        Section sections = (from p in cd.Sections
+        //                          where p.Id == BranchRow.Id
+        //                          select p).SingleOrDefault();
+        //        cd.Sections.Remove(sections);
+        //        cd.SaveChanges();
+        //        loadData();
 
-                MessageBox.Show("تم مسح العنصر بنجاح");
-            }
-            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+        //        MessageBox.Show("تم مسح العنصر بنجاح");
+        //    }
+        //    catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
 
-        }
-        private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
-        {
-            CollegeContext cd = new CollegeContext();
-            Level LevelRow = DGMajorsView.SelectedItem as Level;
+        //}
+        //private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    CollegeContext cd = new CollegeContext();
+           
 
 
           
-                MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        //        MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
 
-                if (result == MessageBoxResult.Yes)
-                {
+        //        if (result == MessageBoxResult.Yes)
+        //        {
 
-                    try
-                    {
+        //            try
+        //            {
 
-                        cd.Branches.RemoveRange(cd.Branches);
+        //                cd.Branches.RemoveRange(cd.Branches);
 
-                        cd.SaveChanges();
-                        loadData();
+        //                cd.SaveChanges();
+        //                loadData();
 
-                        MessageBox.Show("تم مسح كل البيانات");
-                    }
-                    catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
-                }
-                else if (result == MessageBoxResult.No)
-                {
-                    MessageBox.Show("لم يتم حذف شئ");
+        //                MessageBox.Show("تم مسح كل البيانات");
+        //            }
+        //            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+        //        }
+        //        else if (result == MessageBoxResult.No)
+        //        {
+        //            MessageBox.Show("لم يتم حذف شئ");
 
-                }
-            }
+        //        }
+        //    }
           
         
 
@@ -234,6 +229,11 @@ namespace Astmara6Con.Controls
         {
             Binding binding = new Binding();
             binding.Mode = BindingMode.TwoWay;
+
+        }
+
+        private void DGMajorsView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }

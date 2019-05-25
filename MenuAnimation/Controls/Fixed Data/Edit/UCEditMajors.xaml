@@ -1,0 +1,34 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Astmara6.Controls.Fixed_Data.Edit"
+             xmlns:Astmara6="clr-namespace:Astmara6" x:Class="Astmara6.Controls.Fixed_Data.Edit.UCEditMajors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Astmara6:Section x:Key="section"/>
+        <CollectionViewSource x:Key="sectionsViewSource" Source="{Binding Sections, Source={StaticResource section}}"/>
+        <Color x:Key="1">#FF3580BF</Color>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource sectionsViewSource}">
+
+        <DataGrid x:Name="sectionsDataGrid" FlowDirection="RightToLeft" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="400,250,0,0" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="SectionsDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Width="SizeToHeader" IsReadOnly="True" Header="Id" Visibility="Hidden" Binding="{Binding Id}"/>
+                <DataGridTextColumn  Width="SizeToHeader" Header="Id Branch" Visibility="Hidden" Binding="{Binding IdBranch}"/>
+                <DataGridTextColumn  Width="SizeToHeader" Header="الشعب" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="BTNEdit" Content="تعديل" HorizontalAlignment="Left" Margin="569,260,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
+        <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="503,260,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click" Background="#FF303030" BorderBrush="#FF303030"/>
+        <Button x:Name="BTNRemoveAll" Content="حذف الكل" HorizontalAlignment="Left" Margin="405,260,0,0" VerticalAlignment="Top" Width="98" Height="28" Click="BTNRemoveAll_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <Button x:Name="BTNBack" Content="عودة" HorizontalAlignment="Left" Margin="0,411,0,10" Width="77" Height="Auto" Click="BTNBack_Click">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</UserControl>
