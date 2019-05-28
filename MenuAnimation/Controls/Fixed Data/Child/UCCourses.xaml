@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Astmara6Con.Controls"
              xmlns:Astmara6="clr-namespace:Astmara6" x:Class="Astmara6Con.Controls.UCCourses"
              mc:Ignorable="d" 
-             Height="484" Width="764">
+             Height="484" Width="764" Loaded="UserControl_Loaded"
+>
     <UserControl.Resources>
         <Color x:Key="Color1">#89AA1616</Color>
         <Color x:Key="1">#FF3580BF</Color>

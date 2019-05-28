@@ -15,6 +15,7 @@ namespace Astmara6Con.Controls
     /// </summary>
     public partial class UCCourses : UserControl
     {
+        
         int? TotalHour;
         int? Expremente =null;
         int? Virtuale=null;
@@ -31,16 +32,19 @@ namespace Astmara6Con.Controls
         }
         string STRNamePage;
         readonly FRMMainWindow Form = Application.Current.Windows[0] as FRMMainWindow;
-
         public UCCourses()
         {
 
             InitializeComponent();
-            loadData();
+            
           
             
         }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            loadData();
 
+        }
 
         private void BTNBack_Click(object sender, RoutedEventArgs e)
         {
@@ -82,7 +86,7 @@ namespace Astmara6Con.Controls
                     {
                         if (result1 == null)
                         {
-
+                           
                             db.Subjects.Add(new Subject()
                             {
                                 Code = codee,
@@ -90,11 +94,15 @@ namespace Astmara6Con.Controls
                                 Academic = Academee,
 
                                 Exprement = Expremente,
-                                Virtual = Virtuale,
+                                Virtual = Virtuale ,
                                 TotalHours = TotalHour
 
                             });
                             db.SaveChanges();
+                            TBExprement.Text = null;
+                            TBVirtual.Text = null;
+                            Expremente = null;
+                            Virtuale = null;
                             loadData();
                             MessageBox.Show("تم حفظ العملية بنجاح");
                         }
@@ -126,45 +134,61 @@ namespace Astmara6Con.Controls
 
         private void TBVirtual_TextChanged(object sender, TextChangedEventArgs e)
         {
-             if (!String.IsNullOrEmpty(TBVirtual.Text))
+            try
             {
-                TBExprement.IsReadOnly = true;
-              TotalHour  =
-              int.Parse(TBPaper.Text)
-              + int.Parse(TBVirtual.Text);
-                Virtuale = int.Parse(TBVirtual.Text);
-                
-            }
-            else
-            {
-                TBExprement.IsReadOnly = false;
+                if (!String.IsNullOrEmpty(TBVirtual.Text))
+                {
+                    TBExprement.IsReadOnly = true;
+                    Virtuale = int.Parse(TBVirtual.Text);
 
+                    TotalHour =
+                    int.Parse(TBPaper.Text)
+                    + int.Parse(TBVirtual.Text);
+
+                }
+                else
+                {
+                    TBExprement.IsReadOnly = false;
+
+                }
             }
+            catch (Exception) {
+                TBVirtual.Text = "";
+
+                MessageBox.Show("برجاء ادخال عدد ساعات النظري اولا !!"); }
+
+
 
         }
 
         private void TBExprement_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            try { 
            
+                if (!String.IsNullOrEmpty(TBExprement.Text))
+                {
+                    TBVirtual.IsReadOnly = true;
+                    Expremente = int.Parse(TBExprement.Text);
+                    TotalHour =
+                     int.Parse(TBPaper.Text)
+                    + int.Parse(TBExprement.Text);
 
 
-            if (!String.IsNullOrEmpty(TBExprement.Text))
-            {
-                TBVirtual.IsReadOnly = true;
+                }
+                else
+                {
+                    TBVirtual.IsReadOnly = false;
 
-                TotalHour =
-                 int.Parse(TBPaper.Text)
-                + int.Parse(TBExprement.Text);
-                Expremente = int.Parse(TBExprement.Text);
-                TotalHour = Expremente + Academee;
-
-
+                }
             }
-            else
-            {
-                TBVirtual.IsReadOnly = false;
+            catch (Exception) {
+                TBExprement.Text = "";
+                MessageBox.Show("برجاء ادخال عدد ساعات النظري اولا !!"); }
 
-            }
+
+
+
         }
 
        
@@ -215,28 +239,34 @@ namespace Astmara6Con.Controls
                 subjects.Academic = CoursesRow.Academic;
                 subjects.Virtual = CoursesRow.Virtual;
                     subjects.Exprement = CoursesRow.Exprement;
+                if (CoursesRow.Name!= subjects.Name&& CoursesRow.Code != subjects.Code && CoursesRow.Academic != subjects.Academic &&
+                    CoursesRow.Virtual != subjects.Virtual && CoursesRow.Exprement != subjects.Exprement && CoursesRow.TotalHours != subjects.TotalHours ) {
                     if (DGCoursesView.SelectedCells.Count > 0)
                     {
                         if (CoursesRow.Virtual == null)
                         {
                             subjects.TotalHours = CoursesRow.Exprement + CoursesRow.Academic;
-                        dataContext.SaveChanges();
-                        loadData();
-                        MessageBox.Show("تم تعديل الصف بنجاح");
+                            dataContext.SaveChanges();
+                            loadData();
+                            MessageBox.Show("تم تعديل الصف بنجاح");
 
-                    }
+                        }
                         else if (CoursesRow.Exprement == null)
                         {
                             subjects.TotalHours = CoursesRow.Virtual + CoursesRow.Academic;
-                        dataContext.SaveChanges();
-                        loadData();
-                        MessageBox.Show("تم تعديل الصف بنجاح");
+                            dataContext.SaveChanges();
+                            loadData();
+                            MessageBox.Show("تم تعديل الصف بنجاح");
                         }
-                    else { MessageBox.Show("لم يتم حفظ التعديل !! لحدوث خطأ ما");
-                        loadData();
+                        else { MessageBox.Show("لم يتم حفظ التعديل !! لحدوث خطأ ما");
+                            loadData();
 
-                          }
+                        }
 
+                    } }
+                else
+                {
+                    MessageBox.Show("لم يتم تعديل اي شيْ");
                 }
                    
                 } 
@@ -294,9 +324,9 @@ namespace Astmara6Con.Controls
         }
         private void NumberValidationTextBox3(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            //can't write but numbers for TBNameCourse
-            Regex regex = new Regex("[^ء-ي]+");
-            e.Handled = regex.IsMatch(e.Text);
+            ////can't write but numbers for TBNameCourse
+            //Regex regex = new Regex("[^ء-ي]+");
+            //e.Handled = regex.IsMatch(e.Text);
 
         }
         private void TBNameCourse_TextChanged(object sender, TextChangedEventArgs e)

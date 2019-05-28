@@ -244,3 +244,5 @@ F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\GeneratedInternalTypeHe
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditMajors.g.cs
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditMajors.baml
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditDoctor.g.cs
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditDoctor.baml

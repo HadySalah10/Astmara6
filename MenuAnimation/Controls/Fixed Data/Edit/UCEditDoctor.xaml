@@ -1,12 +1,35 @@
-﻿<UserControl x:Class="Astmara6.Controls.Fixed_Data.Edit.UCEditDoctor"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Astmara6.Controls.Fixed_Data.Edit"
+             xmlns:Astmara6="clr-namespace:Astmara6" x:Class="Astmara6.Controls.Fixed_Data.Edit.UCEditDoctor"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Astmara6:Teachers x:Key="teachers"/>
+        <CollectionViewSource x:Key="teachersViewSource" Source="{Binding _Teachers, Source={StaticResource teachers}}"/>
+        <Color x:Key="1">#FF3580BF</Color>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource teachersViewSource}">
+        <DataGrid x:Name="_TeachersDataGrid" FlowDirection="RightToLeft" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="400,250,0,0" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding Id}" Header="Id" Visibility="Hidden" IsReadOnly="True" Width="SizeToHeader"/>
+                <DataGridTextColumn  Binding="{Binding Name}" Header="الاسم" Width="SizeToHeader"/>
+
+                <DataGridTextColumn  Binding="{Binding NickName}" Header="اللقب" Width="SizeToHeader"/>
+
+                <DataGridTextColumn  Binding="{Binding IdWorkHours}" Visibility="Hidden" Header="Id Work Hours" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="BTNEdit_Copy" Content="تعديل" HorizontalAlignment="Left" Margin="329,261,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
+        <Button x:Name="BTNRemove_Copy" Content="حذف" HorizontalAlignment="Left" Margin="329,294,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <Button x:Name="BTNRemoveAll_Copy" Content="حذف الكل" HorizontalAlignment="Left" Margin="297,328,0,0" VerticalAlignment="Top" Width="98" Height="28" Click="BTNRemoveAll_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <Button Content="عودة" HorizontalAlignment="Left" Margin="10,411,0,0" VerticalAlignment="Top" Width="77" Height="29" Click="Button_Click_1">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </UserControl>

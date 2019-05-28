@@ -6,7 +6,7 @@ using Data.Entities;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Data;
-
+using Astmara6.Controls.Fixed_Data.Edit;
 
 namespace Astmara6Con.Controls
 {
@@ -164,78 +164,17 @@ namespace Astmara6Con.Controls
 
         }
 
-        private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-
-                CollegeContext cd = new CollegeContext();
-                Teacher teacherRow = _WorkHoursDataGrid.SelectedItem as Teacher;
-
-                Teacher teachers = (from p in cd.Teachers
-                                    where p.Id == teacherRow.Id
-                                    select p).SingleOrDefault();
-                cd.Teachers.Remove(teachers);
-                cd.SaveChanges();
-                loadData();
-
-                MessageBox.Show("تم مسح العنصر بنجاح");
-            }
-            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
-
-        }
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {
-
-
-        }
-
-        //CollegeContext dataContext = new CollegeContext();
-        //Teacher doctorRow = _WorkHoursDataGrid.SelectedItem as Teacher;
-
-        //Teacher teachers = (from p in dataContext.Teachers
-        //                    where p.Id == doctorRow.Id
-        //                    select p).Single();
-          
-
-        //    if (doctorRow.Name != teachers.Name || doctorRow.NickName != teachers.NickName)
-                
-        //    {
-
-                
-        //            try
-        //            {
-
-
-
-        //                 Teacher teachers1 = (from p in dataContext.Teachers
-        //                                      where p.Id == doctorRow.Id
-        //                                      select p).Single();
-        //teachers1.Name = doctorRow.Name;
-        //                dataContext.SaveChanges();
-        //                loadData();
-
-
-        //MessageBox.Show("تم تعديل الصف بنجاح");
-
-        //            }
-        //            catch (Exception Ex)
-        //            {
-        //                MessageBox.Show(Ex.Message);
-        //                return;
-        //            }
-                
-                
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("لم يتم تعديل اي شئ برجاء عدل حتي يتم الحفظ!!");
-
-        //    }
-        private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
-        {
+            Form.gridShow.Children.Clear();
+            Form.gridShow.Children.Add(new UCEditDoctor());
+            STRNamePage = "تعديل الدكاترة";
+            Form.ChFormName(STRNamePage);
 
         }
+
+       
+       
     }
 }

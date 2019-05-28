@@ -18,6 +18,11 @@ namespace Astmara6Con
     /// </summary>
     public partial class UCLevels : UserControl
     {
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            loadData();
+
+        }
         public void loadData()
         {
             CollegeContext cd = new CollegeContext();
@@ -34,7 +39,7 @@ namespace Astmara6Con
         public UCLevels()
         {
             InitializeComponent();
-            loadData();
+            
 
         }
 
