@@ -1,4 +1,5 @@
-﻿using Data.Entities.Abstraction;
+﻿
+using Data.Entities.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,8 @@ namespace Data.Entities
         [ForeignKey("WorkHour")]
         public int? IdWorkHours { get; set; }
         public virtual WorkHour WorkHour{ get; set; }
+        public virtual ICollection<SubjectTeacherLoad> StudentStatmentLoads { get; set; }
+
         public virtual ICollection<SubjectTeacher>SubjectTeachers { get; set; }
 
     }

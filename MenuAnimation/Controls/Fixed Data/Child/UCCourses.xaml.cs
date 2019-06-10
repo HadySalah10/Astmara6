@@ -21,6 +21,15 @@ namespace Astmara6Con.Controls
         int? Virtuale=null;
         string codee;
         int? Academee;
+        public void loadDataCombo()
+        {
+            CollegeContext cd = new CollegeContext();
+
+            var branchs = (from p in cd.Branches
+                           select p).ToList();
+
+            BranchesComboBox.ItemsSource = branchs;
+        }
         public void loadData()
         {
             CollegeContext cd = new CollegeContext();
@@ -36,9 +45,10 @@ namespace Astmara6Con.Controls
         {
 
             InitializeComponent();
-            
-          
-            
+            loadDataCombo();
+
+
+
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -75,7 +85,8 @@ namespace Astmara6Con.Controls
                     Academee = int.Parse(TBPaper.Text);
 
                     CollegeContext db = new CollegeContext();
-
+                    
+                    Branch BranchesCB = BranchesComboBox.SelectedItem as Branch;
                     var result = (from p in db.Subjects
                                   where p.Name == TBNameCourse.Text
                                   select p).SingleOrDefault();
@@ -86,7 +97,7 @@ namespace Astmara6Con.Controls
                     {
                         if (result1 == null)
                         {
-                           
+
                             db.Subjects.Add(new Subject()
                             {
                                 Code = codee,
@@ -94,7 +105,7 @@ namespace Astmara6Con.Controls
                                 Academic = Academee,
 
                                 Exprement = Expremente,
-                                Virtual = Virtuale ,
+                                Virtual = Virtuale,
                                 TotalHours = TotalHour
 
                             });
@@ -104,6 +115,36 @@ namespace Astmara6Con.Controls
                             Expremente = null;
                             Virtuale = null;
                             loadData();
+                            for (int i = 0; i < 6; i++)
+                            {
+
+                                int id1 = (from record in db.Subjects orderby record.Id descending select record.Id).First();
+
+                            db.SubjectTeacherLoads.Add(new SubjectTeacherLoad()
+                            {
+                                IdBranch = BranchesCB.Id,
+                                IdSubject = id1
+
+                            });
+                            }
+                            db.SaveChanges();
+
+
+                            for (int i=0; i<19; i++) { 
+                            int id = (from record in db.Subjects orderby record.Id descending select record.Id)
+                                .First();
+                            db.SubjectTeachers.Add(new SubjectTeacher ()
+                            {
+                                IdBranch = BranchesCB.Id,
+                                IdSubject = id
+
+                            });
+                            db.SaveChanges();
+                        }
+                            
+
+                            loadData();
+
                             MessageBox.Show("تم حفظ العملية بنجاح");
                         }
                         else
@@ -143,7 +184,7 @@ namespace Astmara6Con.Controls
 
                     TotalHour =
                     int.Parse(TBPaper.Text)
-                    + int.Parse(TBVirtual.Text);
+                    + int.Parse(TBVirtual.Text)-1;
 
                 }
                 else
@@ -172,7 +213,7 @@ namespace Astmara6Con.Controls
                     Expremente = int.Parse(TBExprement.Text);
                     TotalHour =
                      int.Parse(TBPaper.Text)
-                    + int.Parse(TBExprement.Text);
+                    + int.Parse(TBExprement.Text)-1;
 
 
                 }
@@ -218,10 +259,7 @@ namespace Astmara6Con.Controls
             e.Handled = regex.IsMatch(e.Text);
         }
             
-        private void TBPaper_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+     
 
         private void BTNEdit_Click(object sender, RoutedEventArgs e)
         {

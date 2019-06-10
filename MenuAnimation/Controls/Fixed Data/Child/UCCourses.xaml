@@ -14,6 +14,8 @@
         <Color x:Key="Color2">#FFECE3E3</Color>
         <Astmara6:Subjects x:Key="subjects"/>
         <CollectionViewSource x:Key="subjectsViewSource" Source="{Binding _Subjects, Source={StaticResource subjects}}"/>
+        <Astmara6:Branches x:Key="branches"/>
+        <CollectionViewSource x:Key="branchesViewSource" Source="{Binding _Branches, Source={StaticResource branches}}"/>
 
     </UserControl.Resources>
     <Grid DataContext="{StaticResource subjectsViewSource}" >
@@ -31,7 +33,7 @@
             <TextBlock.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}"/>
             </TextBlock.Foreground><Run FlowDirection="RightToLeft" Text="عدد الساعات"/></TextBlock>
-        <TextBox x:Name="TBPaper" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox2"  Height="28" Margin="536,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" Background="#FFECE3E3" TextChanged="TBPaper_TextChanged">
+        <TextBox x:Name="TBPaper" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox2"  Height="28" Margin="536,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" Background="#FFECE3E3">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </TextBox.BorderBrush>
@@ -100,6 +102,18 @@
                 <DataGridTextColumn  Binding="{Binding TotalHours}" Header="إجمالي عدد الساعات" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="القسم" HorizontalAlignment="Left" Margin="180,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.601,-0.387">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </Label.Foreground>
+        </Label>
+        <ComboBox x:Name="BranchesComboBox" DisplayMemberPath="TypeOfBranch" ItemsSource="{Binding Source={StaticResource branchesViewSource}}" Margin="40,201,598,241" SelectedValuePath="Id" Height="42">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
 
     </Grid>
 </UserControl>

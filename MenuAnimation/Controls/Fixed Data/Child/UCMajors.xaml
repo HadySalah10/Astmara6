@@ -47,7 +47,7 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
         </Button>
-        <ComboBox x:Name="CBNameDepartment" DisplayMemberPath="TypeOfBranch" Height="28" ItemsSource="{Binding}" Margin="536,226,99,230" SelectedValuePath="Id">
+        <ComboBox x:Name="CBNameDepartment" DisplayMemberPath="TypeOfBranch" Height="28" ItemsSource="{Binding}" Margin="536,226,99,230" SelectedValuePath="Id" SelectionChanged="CBNameDepartment_SelectionChanged_2">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel/>

@@ -147,59 +147,59 @@ namespace Astmara6Con.Controls
            
         }
 
-        //private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
+        private void BTNRemove_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
 
-        //        CollegeContext cd = new CollegeContext();
-        //        Section BranchRow = DGMajorsView.SelectedItem as Section;
+                CollegeContext cd = new CollegeContext();
+                Section BranchRow = DGMajorsView.SelectedItem as Section;
 
-        //        Section sections = (from p in cd.Sections
-        //                          where p.Id == BranchRow.Id
-        //                          select p).SingleOrDefault();
-        //        cd.Sections.Remove(sections);
-        //        cd.SaveChanges();
-        //        loadData();
+                Section sections = (from p in cd.Sections
+                                    where p.Id == BranchRow.Id
+                                    select p).SingleOrDefault();
+                cd.Sections.Remove(sections);
+                cd.SaveChanges();
+                loadData();
 
-        //        MessageBox.Show("تم مسح العنصر بنجاح");
-        //    }
-        //    catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+                MessageBox.Show("تم مسح العنصر بنجاح");
+            }
+            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
 
-        //}
-        //private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    CollegeContext cd = new CollegeContext();
-           
-
-
-          
-        //        MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        }
+        private void BTNRemoveAll_Click_1(object sender, RoutedEventArgs e)
+        {
+            CollegeContext cd = new CollegeContext();
 
 
-        //        if (result == MessageBoxResult.Yes)
-        //        {
 
-        //            try
-        //            {
 
-        //                cd.Branches.RemoveRange(cd.Branches);
+            MessageBoxResult result = MessageBox.Show("هل انت متأكد من أنك تريد حذف الكل؟؟", "حذف الكل", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-        //                cd.SaveChanges();
-        //                loadData();
 
-        //                MessageBox.Show("تم مسح كل البيانات");
-        //            }
-        //            catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
-        //        }
-        //        else if (result == MessageBoxResult.No)
-        //        {
-        //            MessageBox.Show("لم يتم حذف شئ");
+            if (result == MessageBoxResult.Yes)
+            {
 
-        //        }
-        //    }
-          
-        
+                try
+                {
+
+                    cd.Branches.RemoveRange(cd.Branches);
+
+                    cd.SaveChanges();
+                    loadData();
+
+                    MessageBox.Show("تم مسح كل البيانات");
+                }
+                catch (Exception) { MessageBox.Show("حدث خطب ما برجاء المحاولة مرة أخري"); }
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                MessageBox.Show("لم يتم حذف شئ");
+
+            }
+        }
+
+
 
         private void CBNameDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -233,6 +233,11 @@ namespace Astmara6Con.Controls
         }
 
         private void DGMajorsView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void CBNameDepartment_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
         {
 
         }

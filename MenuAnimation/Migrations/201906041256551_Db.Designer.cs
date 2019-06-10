@@ -13,7 +13,7 @@ namespace Astmara6.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201905242101011_Db"; }
+            get { return "201906041256551_Db"; }
         }
         
         string IMigrationMetadata.Source

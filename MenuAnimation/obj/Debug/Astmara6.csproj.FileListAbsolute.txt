@@ -189,8 +189,6 @@ F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\EntityFramework.dll
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\EntityFramework.SqlServer.dll
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\MaterialDesignColors.dll
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\MaterialDesignThemes.Wpf.dll
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\EntityFramework.xml
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\EntityFramework.SqlServer.xml
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\MaterialDesignColors.pdb
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\MaterialDesignThemes.Wpf.pdb
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\bin\Debug\MaterialDesignThemes.Wpf.xml
@@ -239,10 +237,12 @@ F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csproj.CoreCom
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csproj.CopyComplete
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.exe
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.pdb
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csprojAssemblyReference.cache
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\GeneratedInternalTypeHelper.g.cs
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditMajors.g.cs
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditMajors.baml
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditDoctor.g.cs
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditDoctor.baml
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csprojAssemblyReference.cache
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db1.resources
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csproj.ResolveComReference.cache

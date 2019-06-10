@@ -34,7 +34,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnExportData" Content="استخراح" HorizontalAlignment="Left" Margin="10,442,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnExportData" Content="استخراح"  Click="GenerateExcelFile" HorizontalAlignment="Left" Margin="10,442,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </UserControl>

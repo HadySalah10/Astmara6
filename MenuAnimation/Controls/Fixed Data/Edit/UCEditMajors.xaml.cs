@@ -51,8 +51,8 @@ namespace Astmara6.Controls.Fixed_Data.Edit
             Data.Entities.Section SectionRow = sectionsDataGrid.SelectedItem as Data.Entities.Section;
 
             Data.Entities.Section sections = (from p in dataContext.Sections
-                              where p.Id == SectionRow.Id
-                              select p).Single();
+                                              where p.Id == SectionRow.Id
+                                              select p).Single();
             if (SectionRow.Name != sections.Name)
             {
                 try
@@ -60,8 +60,8 @@ namespace Astmara6.Controls.Fixed_Data.Edit
                     Data.Entities.Section DepartmentRow = sectionsDataGrid.SelectedItem as Data.Entities.Section;
 
                     Data.Entities.Section departments = (from p in dataContext.Sections
-                                          where p.Id == DepartmentRow.Id
-                                          select p).Single();
+                                                         where p.Id == DepartmentRow.Id
+                                                         select p).Single();
                     departments.Name = DepartmentRow.Name;
                     dataContext.SaveChanges();
                     loadData();
@@ -92,9 +92,9 @@ namespace Astmara6.Controls.Fixed_Data.Edit
                 Data.Entities.Section BranchRow = sectionsDataGrid.SelectedItem as Data.Entities.Section;
 
                 Data.Entities.Section sections = (from p in db.Sections
-                                    where p.Id == BranchRow.Id
+                                                  where p.Id == BranchRow.Id
 
-                                    select p).SingleOrDefault();
+                                                  select p).SingleOrDefault();
                 db.Sections.Remove(sections);
                 db.SaveChanges();
                 loadData();

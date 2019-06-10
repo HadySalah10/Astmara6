@@ -44,15 +44,15 @@ namespace Astmara6Con.Controls
 
             degree.ItemsSource = workHours;
         }
-        public void loadDataComboSubject()
-        {
-            CollegeContext cd = new CollegeContext();
+        //public void loadDataComboSubject()
+        //{
+        //    CollegeContext cd = new CollegeContext();
 
-            var subjects = (from p in cd.Subjects
-                             select p).ToList();
+        //    var subjects = (from p in cd.Subjects
+        //                    select p).ToList();
 
-            _SubjectsComboBox.ItemsSource = subjects;
-        }
+        //    _SubjectsComboBox.ItemsSource = subjects;
+        //}
         public void loadDataCombodepartment1()
         {
             CollegeContext cd = new CollegeContext();
@@ -71,7 +71,7 @@ namespace Astmara6Con.Controls
             loadData();
             loadDataCombodegree();
             loadDataCombodepartment1();
-            loadDataComboSubject();
+            //loadDataComboSubject();
         }
 
 
@@ -87,22 +87,22 @@ namespace Astmara6Con.Controls
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //Form.gridShow.Children.Clear();
-            //Form.gridShow.Children.Add(new UCAssistant());
-            //STRNamePage = "المعيدين";
-            //Form.ChFormName(STRNamePage);
+        //    Form.gridShow.Children.Clear();
+        //    Form.gridShow.Children.Add(new UCAssistant());
+        //    STRNamePage = "المعيدين";
+        //    Form.ChFormName(STRNamePage);
 
         }
 
-        private void Button_AddClick(object sender, RoutedEventArgs e)
+    private void Button_AddClick(object sender, RoutedEventArgs e)
         {
 
             CollegeContext cd = new CollegeContext();
             WorkHour degreeCB = degree.SelectedItem as WorkHour;
-            Branch departmentCB = department1.SelectedItem as Branch;
-            Subject SubjectCb = _SubjectsComboBox.SelectedItem as Subject;
+        Branch departmentCB = department1.SelectedItem as Branch;
+        //Subject SubjectCb = _SubjectsComboBox.SelectedItem as Subject;
 
-            CollegeContext db = new CollegeContext();
+        CollegeContext db = new CollegeContext();
 
             var result = (from p in db.Teachers
                           where p.Name == cou_name.Text
@@ -136,20 +136,28 @@ namespace Astmara6Con.Controls
                     loadData();
 
                     var getIdteach = (from p in db.Teachers
-                                  where cou_name.Text == p.Name 
-                                  select p.Id).SingleOrDefault();
-                    var getIdsub = (from p in db.Subjects
-                                 where _SubjectsComboBox.Text == p.Name
-                                 select p.Id).SingleOrDefault();
-                    cd.SubjectTeachers.Add(new SubjectTeacher()
-                    {
-                        IdBranch= departmentCB.Id,
-                        IdTeacher= getIdteach,
-                        IdSubject= getIdsub
+                                      where cou_name.Text == p.Name
+                                      select p.Id).FirstOrDefault();
+                    //var getIdsub = (from p in db.Subjects
+                    //                where _SubjectsComboBox.Text == p.Name
+                    //                select p.Id).SingleOrDefault();
 
-                    });
+                    SubjectTeacherLoad teachers = (from p in cd.SubjectTeacherLoads
+                                    where p.IdBranch == departmentCB.Id && p.IdTeacher==null
+                                    select p).FirstOrDefault();
+                    teachers.IdTeacher = getIdteach;
                     cd.SaveChanges();
                     loadData();
+
+
+                    //cd.SubjectTeachers.Add(new SubjectTeacher()
+                    //{
+                    //    IdBranch = departmentCB.Id,
+                    //    IdTeacher = getIdteach,
+
+
+                    //}) ;
+
                     MessageBox.Show("تم حفظ البيانات بنجاح ");
                 }
             }

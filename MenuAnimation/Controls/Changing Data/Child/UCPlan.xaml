@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:Astmara6Con.Controls"
              xmlns:Astmara6="clr-namespace:Astmara6" x:Class="Astmara6Con.Controls.UCPlan"
              mc:Ignorable="d" 
-              Height="484" Width="746" >
+              Height="484" Width="746" 
+     Loaded="UserContro1_Loaded"
+    >
     <UserControl.Resources>
+
         <Color x:Key="Color1">#FFECE3E3</Color>
         <Color x:Key="Color2">#FF3580BF</Color>
         <Color x:Key="1">#FF3580BF</Color>
@@ -21,8 +24,11 @@
         <CollectionViewSource x:Key="teachersViewSource1" Source="{Binding _Teachers, Source={StaticResource teachers}}"/>
         <Astmara6:Levels x:Key="levels"/>
         <CollectionViewSource x:Key="levelsViewSource" Source="{Binding _Levels, Source={StaticResource levels}}"/>
+        <Astmara6:TeachSubBranch x:Key="teachSubBranch"/>
+        <CollectionViewSource x:Key="teachersViewSource2" Source="{Binding Teachers, Source={StaticResource teachSubBranch}}"/>
     </UserControl.Resources>
-    <Grid DataContext="{StaticResource branchesViewSource}">
+    <Grid DataContext="{StaticResource branchesViewSource}" >
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -52,7 +58,7 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
-        <Button Content="اضافة" HorizontalAlignment="Left" Margin="0,297,0,0" VerticalAlignment="Top" Width="68" Height="28">
+        <Button Content="اضافة" HorizontalAlignment="Left" Margin="273,284,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="Button_Click_3">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
@@ -67,25 +73,12 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
         </Button>
-        <DataGrid HorizontalAlignment="Left" Height="191"  Margin="93,297,0,-4" VerticalAlignment="Top" Width="653" FlowDirection="RightToLeft">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="              الاسم الدكتور             "/>
-                <DataGridTextColumn Header="        الاسم المعيد             "/>
-                <DataGridTextColumn Header="كود المادة "/>
-                <DataGridTextColumn Header="     الشعبة       "/>
-                <DataGridTextColumn Header="المستوي"/>
-
-
-
-
-            </DataGrid.Columns>
-        </DataGrid>
         <Label Content="اسم المادة" HorizontalAlignment="Left" Margin="645,217,0,0" VerticalAlignment="Top">
             <Label.Foreground>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
-        <ComboBox x:Name="CBTypeOfSection"  DisplayMemberPath="TypeOfBranch" ItemsSource="{Binding}" Background="#FFECE3E3" Margin="564,149,69,302" SelectedValuePath="Id" Height="33" SelectionChanged="CBTypeOfSection_SelectionChanged">
+        <ComboBox x:Name="CBTypeOfBranch"  DisplayMemberPath="TypeOfBranch" ItemsSource="{Binding}" Background="#FFECE3E3" Margin="564,147,69,302" SelectedValuePath="Id" Height="35" SelectionChanged="CBTypeOfSection_SelectionChanged">
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
             </ComboBox.BorderBrush>
@@ -104,7 +97,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
         </Grid>
-        <ComboBox x:Name="_SubjectsComboBox" DisplayMemberPath="Name" Height="28" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource subjectsViewSource}}" Margin="492,215,126,241" SelectedValuePath="Id">
+        <ComboBox x:Name="_SubjectsComboBox" Foreground="Black" DisplayMemberPath="Name" Height="28" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource subjectsViewSource}}" Margin="492,215,126,241" SelectedValuePath="Id">
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
             </ComboBox.BorderBrush>
@@ -114,7 +107,8 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <ComboBox x:Name="TeachersComboBox"  DisplayMemberPath="Name" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource teachersViewSource1}}" Margin="342,147,266,302" SelectedValuePath="Id" Height="35" SelectionChanged="_TeachersComboBox_SelectionChanged" Loaded="TeachersComboBox_Loaded">
+        <ComboBox x:Name="TeachersComboBox"  SelectedValue="2" DisplayMemberPath="Name" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource teachersViewSource1}}" Margin="313,147,266,302" SelectedValuePath="Id" Height="35" SelectionChanged="_TeachersComboBox_SelectionChanged" Loaded="TeachersComboBox_Loaded">
+
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
             </ComboBox.BorderBrush>
@@ -124,7 +118,8 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <ComboBox x:Name="TeachersComboBox1" DisplayMemberPath="Name" Background="#FFECE3E3" Height="35" ItemsSource="{Binding Source={StaticResource teachersViewSource1}}" Margin="93,147,507,302" SelectedValuePath="Id">
+        <ComboBox x:Name="TeachersComboBox1" Text="" DisplayMemberPath="Name" Background="#FFECE3E3" Height="35" ItemsSource="{Binding Source={StaticResource teachersViewSource1}}" Margin="74,147,507,302" SelectedValuePath="Id">
+
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
             </ComboBox.BorderBrush>
@@ -134,7 +129,8 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <ComboBox x:Name="_SubjectsComboBox1" DisplayMemberPath="Code" Height="24" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource subjectsViewSource}}" Margin="301,219,331,241" SelectedValuePath="Id">
+        <ComboBox x:Name="_SubjectsComboBox1" DisplayMemberPath="Code"  Height="28" Background="#FFECE3E3" Margin="301,215,331,241" SelectedValuePath="Id">
+
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
             </ComboBox.BorderBrush>
@@ -144,7 +140,7 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <ComboBox x:Name="_LevelsComboBox" DisplayMemberPath="Name" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource levelsViewSource}}" Margin="74,215,560,241" SelectedValuePath="Id" Height="28">
+        <ComboBox x:Name="_LevelsComboBox" DisplayMemberPath="Name" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource teachersViewSource}}" Margin="74,215,560,241" SelectedValuePath="Id" Height="28" SelectionChanged="_LevelsComboBox_SelectionChanged">
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
             </ComboBox.BorderBrush>
@@ -154,5 +150,17 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
+        <DataGrid x:Name="PlanDG" AutoGenerateColumns="False" IsReadOnly="True"  FlowDirection="RightToLeft" EnableRowVirtualization="True" ItemsSource="{Binding }" Margin="346,284,0,0" RowDetailsVisibilityMode="VisibleWhenSelected">
+
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn   Binding="{Binding NickName}"  Header="اللقب" Width="SizeToHeader"/>
+                <DataGridTextColumn   Binding="{ Binding Code }" Header="كود المادة" Width="SizeToHeader"/>
+                <DataGridTextColumn   Binding="{Binding TypeOfBranch}" Header="القسم " Width="SizeToHeader"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="273,317,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
     </Grid>
 </UserControl>

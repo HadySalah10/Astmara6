@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Entity;
 using Data.Entities;
 
+
 namespace Data.Context
 {
     class CollegeContext:DbContext
@@ -19,6 +20,8 @@ namespace Data.Context
         public virtual DbSet<StudentStatment>StudentStatments { get; set; }
         public virtual DbSet<Subject> Subjects{ get; set; }
         public virtual DbSet<SubjectTeacher> SubjectTeachers{ get; set; }
+        public virtual DbSet<SubjectTeacherLoad> SubjectTeacherLoads { get; set; }
+
         public virtual DbSet<Teacher> Teachers{ get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WorkHour> WorkHours { get; set; }

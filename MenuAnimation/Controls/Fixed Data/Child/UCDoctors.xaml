@@ -103,21 +103,6 @@
             </ComboBox.ItemsPanel>
         </ComboBox>
         <Button x:Name="BTNEdit" Content=" تعديل وحذف" HorizontalAlignment="Left" Margin="155,336,0,0" VerticalAlignment="Top" Width="119" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
-        <ComboBox x:Name="_SubjectsComboBox" DisplayMemberPath="Name" ItemsSource="{Binding Source={StaticResource subjectsViewSource}}" Margin="10,217,575,235" SelectedValuePath="Id" Height="32">
-            <ComboBox.Background>
-                <SolidColorBrush Color="{DynamicResource Color4}"/>
-            </ComboBox.Background>
-            <ComboBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel/>
-                </ItemsPanelTemplate>
-            </ComboBox.ItemsPanel>
-        </ComboBox>
-        <Label Content="المادة" HorizontalAlignment="Left" Margin="176,221,0,0" VerticalAlignment="Top" Background="{x:Null}">
-            <Label.Foreground>
-                <SolidColorBrush Color="{DynamicResource 1}"/>
-            </Label.Foreground>
-        </Label>
         <DataGrid x:Name="_WorkHoursDataGrid" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" FlowDirection="RightToLeft" ItemsSource="{Binding Source={StaticResource workHoursViewSource}}" Margin="286,286,0,0" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn  Binding="{Binding Id}"  Header="Id" Visibility="Hidden" IsReadOnly="True" Width="auto"/>
