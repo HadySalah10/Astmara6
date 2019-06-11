@@ -38,22 +38,17 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
-        <Label Content="اسم المعيد" HorizontalAlignment="Left" Margin="244,147,0,0" VerticalAlignment="Top">
+        <Label Content="كود المادة" HorizontalAlignment="Left" Margin="676,217,0,0" VerticalAlignment="Top">
             <Label.Foreground>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
-        <Label Content="كود المادة" HorizontalAlignment="Left" Margin="420,217,0,0" VerticalAlignment="Top">
+        <Label Content="القسم" HorizontalAlignment="Left" Margin="696,147,0,0" VerticalAlignment="Top">
             <Label.Foreground>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
-        <Label Content="القسم" HorizontalAlignment="Left" Margin="682,147,0,0" VerticalAlignment="Top">
-            <Label.Foreground>
-                <SolidColorBrush Color="{DynamicResource 1}"/>
-            </Label.Foreground>
-        </Label>
-        <Label Content="المستوي" HorizontalAlignment="Left" Margin="191,217,0,0" VerticalAlignment="Top">
+        <Label Content="المستوي" HorizontalAlignment="Left" Margin="492,217,0,0" VerticalAlignment="Top">
             <Label.Foreground>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
@@ -73,7 +68,7 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
         </Button>
-        <Label Content="اسم المادة" HorizontalAlignment="Left" Margin="645,217,0,0" VerticalAlignment="Top">
+        <Label Content="اسم المادة" HorizontalAlignment="Left" Margin="244,152,0,0" VerticalAlignment="Top" Width="64">
             <Label.Foreground>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
@@ -97,7 +92,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
         </Grid>
-        <ComboBox x:Name="_SubjectsComboBox" Foreground="Black" DisplayMemberPath="Name" Height="28" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource subjectsViewSource}}" Margin="492,215,126,241" SelectedValuePath="Id">
+        <ComboBox x:Name="_SubjectsComboBox" Foreground="Black" DisplayMemberPath="Name" Height="28" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource subjectsViewSource}}" Margin="52,150,507,306" SelectedValuePath="Id">
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
             </ComboBox.BorderBrush>
@@ -118,7 +113,7 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <ComboBox x:Name="TeachersComboBox1" Text="" DisplayMemberPath="Name" Background="#FFECE3E3" Height="35" ItemsSource="{Binding Source={StaticResource teachersViewSource1}}" Margin="74,147,507,302" SelectedValuePath="Id">
+        <ComboBox x:Name="_SubjectsComboBox1" DisplayMemberPath="Code"  Height="28" Background="#FFECE3E3" Margin="563,215,69,241" SelectedValuePath="Id">
 
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
@@ -129,18 +124,7 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <ComboBox x:Name="_SubjectsComboBox1" DisplayMemberPath="Code"  Height="28" Background="#FFECE3E3" Margin="301,215,331,241" SelectedValuePath="Id">
-
-            <ComboBox.BorderBrush>
-                <SolidColorBrush Color="{DynamicResource Color2}"/>
-            </ComboBox.BorderBrush>
-            <ComboBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel/>
-                </ItemsPanelTemplate>
-            </ComboBox.ItemsPanel>
-        </ComboBox>
-        <ComboBox x:Name="_LevelsComboBox" DisplayMemberPath="Name" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource teachersViewSource}}" Margin="74,215,560,241" SelectedValuePath="Id" Height="28" SelectionChanged="_LevelsComboBox_SelectionChanged">
+        <ComboBox x:Name="_LevelsComboBox" DisplayMemberPath="Name" Background="#FFECE3E3" ItemsSource="{Binding Source={StaticResource teachersViewSource}}" Margin="380,215,254,241" SelectedValuePath="Id" Height="28" SelectionChanged="_LevelsComboBox_SelectionChanged">
             <ComboBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource Color2}"/>
             </ComboBox.BorderBrush>
@@ -158,9 +142,42 @@
                 <DataGridTextColumn   Binding="{Binding NickName}"  Header="اللقب" Width="SizeToHeader"/>
                 <DataGridTextColumn   Binding="{ Binding Code }" Header="كود المادة" Width="SizeToHeader"/>
                 <DataGridTextColumn   Binding="{Binding TypeOfBranch}" Header="القسم " Width="SizeToHeader"/>
-
+                <DataGridTextColumn   Binding="{Binding hoursAca}" Header="النظري " Width="SizeToHeader"/>
+                <DataGridTextColumn   Binding="{Binding hoursVirt}" Header="العملي " Width="SizeToHeader"/>
+                <DataGridTextColumn   Binding="{Binding hoursExp}" Header="تمارين " Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="273,317,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <TextBox x:Name="TBhours" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" Height="28" Margin="244,0,460,241" TextWrapping="Wrap" VerticalAlignment="Bottom" Background="#FFECE3E3" TextChanged="TBhours_TextChanged">
+            <TextBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </TextBox.BorderBrush>
+        </TextBox>
+        <Label Content="ساعات النظري" HorizontalAlignment="Left" Margin="294,217,0,0" VerticalAlignment="Top">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </Label.Foreground>
+        </Label>
+        <Label Content="ساعات العملي" HorizontalAlignment="Left" Margin="158,217,0,0" VerticalAlignment="Top">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="TBhours_Copy" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" Height="28" Margin="118,0,586,241" TextWrapping="Wrap" VerticalAlignment="Bottom" Background="#FFECE3E3" TextChanged="TBhours_TextChanged_1">
+            <TextBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </TextBox.BorderBrush>
+        </TextBox>
+        <Label Content="ساعات التمارين" HorizontalAlignment="Left" Margin="31,217,0,0" VerticalAlignment="Top">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="TBhours_Copy1" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" Height="28" Margin="8,0,715,241" TextWrapping="Wrap" VerticalAlignment="Bottom" Background="#FFECE3E3" TextChanged="TBhours_TextChanged_2">
+            <TextBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </TextBox.BorderBrush>
+        </TextBox>
+
     </Grid>
 </UserControl>

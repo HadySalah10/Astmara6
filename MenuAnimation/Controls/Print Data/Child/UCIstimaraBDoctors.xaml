@@ -11,42 +11,48 @@
         <Astmara6:Teachers x:Key="teachers"/>
         <CollectionViewSource x:Key="teachersViewSource" Source="{Binding _Teachers, Source={StaticResource teachers}}"/>
         <Color x:Key="1">#FF3580BF</Color>
+        <Astmara6:Branches x:Key="branches"/>
+        <CollectionViewSource x:Key="branchesViewSource" Source="{Binding _Branches, Source={StaticResource branches}}"/>
     </UserControl.Resources>
     <Grid DataContext="{StaticResource teachersViewSource}">
-        <Button x:Name="btnExportData" Content="استخراح" HorizontalAlignment="Left" Margin="10,442,0,0" VerticalAlignment="Top" Width="75"/>
-        <DataGrid HorizontalAlignment="Left" Height="327" FlowDirection="RightToLeft" Margin="110,147,0,0" VerticalAlignment="Top" Width="652">
+        <DataGrid x:Name="IstmaraB" HorizontalAlignment="Left" AutoGenerateColumns="False" IsReadOnly="True"  Height="327" EnableRowVirtualization="True" ItemsSource="{Binding }" FlowDirection="RightToLeft" Margin="110,147,0,0" VerticalAlignment="Top" Width="652" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="الاسم"/>
-                <DataGridTextColumn Header="الدرجة"/>
-                <DataGridTextColumn Header="النصب القانوني"/>
-                <DataGridTextColumn Header="المواد التي يقوم بتدريسها"/>
-                <DataGridTextColumn Header="نظري"/>
-                <DataGridTextColumn Header="عملي"/>
-                <DataGridTextColumn Header="تمارين"/>
-                <DataGridTextColumn Header="المجموع "/>
-
-
-
-
-
-
-
-
+                <DataGridTextColumn   Binding="{Binding Name}"  Header="الاسم" Width="auto"/>
+                <DataGridTextColumn   Binding="{Binding Rank}"  Header="الدرجة" Width="auto"/>
+                <DataGridTextColumn   Binding="{Binding HoursOfquerm}"  Header="النصب القانوني" Width="auto"/>
+                <DataGridTextColumn   Binding="{Binding Namesub}"  Header="المواد التي يقوم بتدريسها" Width="auto"/>
+                <DataGridTextColumn   Binding="{Binding Academic}"  Header="نظري" Width="auto"/>
+                <DataGridTextColumn   Binding="{Binding Virtual}"  Header="عملي" Width="auto"/>
+                <DataGridTextColumn   Binding="{Binding Exprement}"  Header="تمارين" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <ComboBox x:Name="_TeachersComboBox" DisplayMemberPath="NickName" Height="40" ItemsSource="{Binding}" Margin="482,84,178,360" SelectedValuePath="Id">
+        <ComboBox x:Name="_TeachersComboBox" DisplayMemberPath="Name" ItemsSource="{Binding}" Margin="434,63,168,393" SelectedValuePath="Id" SelectionChanged="_TeachersComboBox_SelectionChanged">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel/>
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <Label Content="حدد الدكتور " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="647,98,0,0">
+        <Label Content="حدد الدكتور " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="667,66,0,0">
             <Label.Foreground>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
+        <Label Content="القسم" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="693,10,0,0" Height="33" Width="44">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource 1}"/>
+            </Label.Foreground>
+        </Label>
+        <ComboBox x:Name="_BranchesComboBox" DisplayMemberPath="TypeOfBranch" ItemsSource="{Binding Source={StaticResource branchesViewSource}}" Margin="492,10,168,441" SelectedValuePath="Id" Height="33" SelectionChanged="_BranchesComboBox_SelectionChanged">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+        <Button x:Name="btnExportData" Content="استخراح"  Click="GenerateExcelFile" HorizontalAlignment="Left" Margin="10,442,0,0" VerticalAlignment="Top" Width="95"/>
+        <Button Content="اختر الكل" HorizontalAlignment="Left" Margin="11,382,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click"/>
 
     </Grid>
 </UserControl>

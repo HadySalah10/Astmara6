@@ -24,14 +24,7 @@ namespace Astmara6Con.Controls
                          join f1 in cd.Teachers on p1.Id equals f1.IdWorkHours
                          select new { p1.Rank,p1.HoursOfQuorum ,f1.Name,f1.NickName }).ToList();
 
-            //var teachers = (from p in cd.Teachers
-            //                select p).ToList();
-            //var workhours = (from p1 in cd.WorkHours
-            //                 join f1 in cd.Teachers on p1.Id equals f1.IdWorkHours
-            //                 select new { p1.Rank, p1.HoursOfQuorum }).ToList();
-
-
-            //DGDoctorsView.ItemsSource = teachers;
+           
             _WorkHoursDataGrid.ItemsSource = query;
 
         }
@@ -44,15 +37,7 @@ namespace Astmara6Con.Controls
 
             degree.ItemsSource = workHours;
         }
-        //public void loadDataComboSubject()
-        //{
-        //    CollegeContext cd = new CollegeContext();
-
-        //    var subjects = (from p in cd.Subjects
-        //                    select p).ToList();
-
-        //    _SubjectsComboBox.ItemsSource = subjects;
-        //}
+     
         public void loadDataCombodepartment1()
         {
             CollegeContext cd = new CollegeContext();
@@ -138,9 +123,7 @@ namespace Astmara6Con.Controls
                     var getIdteach = (from p in db.Teachers
                                       where cou_name.Text == p.Name
                                       select p.Id).FirstOrDefault();
-                    //var getIdsub = (from p in db.Subjects
-                    //                where _SubjectsComboBox.Text == p.Name
-                    //                select p.Id).SingleOrDefault();
+                 
 
                     SubjectTeacherLoad teachers = (from p in cd.SubjectTeacherLoads
                                     where p.IdBranch == departmentCB.Id && p.IdTeacher==null
@@ -150,13 +133,7 @@ namespace Astmara6Con.Controls
                     loadData();
 
 
-                    //cd.SubjectTeachers.Add(new SubjectTeacher()
-                    //{
-                    //    IdBranch = departmentCB.Id,
-                    //    IdTeacher = getIdteach,
-
-
-                    //}) ;
+                
 
                     MessageBox.Show("تم حفظ البيانات بنجاح ");
                 }

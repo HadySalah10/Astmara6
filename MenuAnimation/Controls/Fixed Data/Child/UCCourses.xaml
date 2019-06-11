@@ -24,7 +24,7 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </TextBox.BorderBrush>
         </TextBox>
-        <TextBox x:Name="TBNameCourse" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox3" Height="28" Margin="362,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Background="#FFECE3E3" TextChanged="TBNameCourse_TextChanged">
+        <TextBox x:Name="TBNameCourse" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox3" Height="28" Margin="300,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Background="#FFECE3E3" TextChanged="TBNameCourse_TextChanged">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </TextBox.BorderBrush>

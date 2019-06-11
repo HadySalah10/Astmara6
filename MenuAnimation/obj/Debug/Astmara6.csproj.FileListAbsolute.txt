@@ -243,6 +243,5 @@ F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edi
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditDoctor.g.cs
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Controls\Fixed Data\Edit\UCEditDoctor.baml
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csprojAssemblyReference.cache
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources
-F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db1.resources
 F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.csproj.ResolveComReference.cache
+F:\Project\GP\Istimara6\Astmara6\MenuAnimation\obj\Debug\Astmara6.Migrations.Db.resources

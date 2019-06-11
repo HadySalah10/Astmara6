@@ -19,7 +19,7 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
-        <TextBox x:Name="TBNameDepartment" PreviewTextInput="NumberValidationTextBox"  HorizontalAlignment="Right" Height="23" Margin="0,0,137,232" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Background="#FFECE3E3">
+        <TextBox x:Name="TBNameDepartment" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" HorizontalAlignment="Right" Height="23" Margin="0,0,137,232" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Background="#FFECE3E3">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </TextBox.BorderBrush>

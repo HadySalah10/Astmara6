@@ -97,24 +97,55 @@ namespace Astmara6Con.Controls
                     {
                         if (result1 == null)
                         {
-
-                            db.Subjects.Add(new Subject()
+                            if (!String.IsNullOrEmpty(TBExprement.Text))
                             {
-                                Code = codee,
-                                Name = TBNameCourse.Text,
-                                Academic = Academee,
-
-                                Exprement = Expremente,
-                                Virtual = Virtuale,
-                                TotalHours = TotalHour
+                                db.Subjects.Add(new Subject()
+                                {
+                                    Code = codee,
+                                    Name = TBNameCourse.Text,
+                                    Academic = Academee,
+                                    Exprement = Expremente,
+                                    TotalHours = TotalHour
 
                             });
+                                db.SaveChanges();
+                                loadData();
+
+                            }
+                            else if (!String.IsNullOrEmpty(TBVirtual.Text))
+                            {
+                                db.Subjects.Add(new Subject()
+                                {
+                                    Code = codee,
+                                    Name = TBNameCourse.Text,
+                                    Academic = Academee,
+                                    Virtual = Virtuale,
+                                    TotalHours = TotalHour
+                          
+
+                        });
                             db.SaveChanges();
+                            loadData();
+                                loadData();
+
+                                MessageBox.Show("تم حفظ العملية بنجاح");
+
+                            }
+                            else if(String.IsNullOrEmpty(TBExprement.Text))
+                            {
+                                TBVirtual.IsReadOnly = false;
+
+                            }
+                            else if (String.IsNullOrEmpty(TBVirtual.Text))
+                            {
+                                TBVirtual.IsReadOnly = false;
+
+                            }
+
                             TBExprement.Text = null;
                             TBVirtual.Text = null;
                             Expremente = null;
                             Virtuale = null;
-                            loadData();
                             for (int i = 0; i < 6; i++)
                             {
 
@@ -128,24 +159,16 @@ namespace Astmara6Con.Controls
                             });
                             }
                             db.SaveChanges();
-
-
-                            for (int i=0; i<19; i++) { 
-                            int id = (from record in db.Subjects orderby record.Id descending select record.Id)
-                                .First();
-                            db.SubjectTeachers.Add(new SubjectTeacher ()
-                            {
-                                IdBranch = BranchesCB.Id,
-                                IdSubject = id
-
-                            });
-                            db.SaveChanges();
-                        }
-                            
-
                             loadData();
 
                             MessageBox.Show("تم حفظ العملية بنجاح");
+
+
+                           
+                        
+                            
+
+                         
                         }
                         else
                         {

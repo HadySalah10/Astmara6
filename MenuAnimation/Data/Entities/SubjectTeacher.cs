@@ -13,6 +13,11 @@ namespace Data.Entities
         [ForeignKey("Subject")]
         public int? IdSubject { get; set; }
         [ForeignKey("Teacher")]
+        public int? hoursAca { get; set; }
+        public int? hoursExp { get; set; }
+        public int? hoursVirt { get; set; }
+
+
 
         public int? IdTeacher { get; set; }
         public virtual Branch Branch { get; set; }

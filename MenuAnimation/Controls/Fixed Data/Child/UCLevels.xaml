@@ -15,12 +15,12 @@
 
     </UserControl.Resources>
     <Grid DataContext="{StaticResource levelsViewSource}" >
-        <Label Content="اسم المستوي" HorizontalAlignment="Left" Margin="668,288,0,0" VerticalAlignment="Top" Background="{x:Null}">
+        <Label Content="اسم المستوي" HorizontalAlignment="Left" Margin="660,188,0,0" VerticalAlignment="Top" Background="{x:Null}">
             <Label.Foreground>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Label.Foreground>
         </Label>
-        <TextBox x:Name="TBNameLevels"  PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="22" Margin="510,292,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFECE3E3" TextChanged="TBNameLevels_TextChanged_1">
+        <TextBox x:Name="TBNameLevels"  PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="22" Margin="510,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFECE3E3" TextChanged="TBNameLevels_TextChanged_1">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </TextBox.BorderBrush>
@@ -30,7 +30,7 @@
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
         </Button>
-        <Button x:Name="BTNAdd" Content="اضافة" HorizontalAlignment="Left" Margin="422,292,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="BTNAdd_Click_1" RenderTransformOrigin="0.934,0.321">
+        <Button x:Name="BTNAdd" Content="اضافة" HorizontalAlignment="Left" Margin="396,192,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="BTNAdd_Click_1" RenderTransformOrigin="0.934,0.321">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource 1}"/>
             </Button.Background>
@@ -40,14 +40,14 @@
 
 
         <Button x:Name="BTNBack" Content="العودة" HorizontalAlignment="Left" Margin="2,400,0,0" Width="75"  RenderTransformOrigin="-0.635,0.598" Click="BTNBack_Click" Height="32" VerticalAlignment="Top"/>
-        <DataGrid x:Name="DGLevelsView" FlowDirection="RightToLeft" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="420,320,2,1" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="DGLevelsView" FlowDirection="RightToLeft" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="308,225,0,1" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn  Binding="{Binding Id}" Visibility="Hidden" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
                 <DataGridTextColumn  Binding="{Binding Name}" Header="المستويات" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="526,335,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
-        <Button x:Name="BTNEdit" Content="تعديل" HorizontalAlignment="Left" Margin="597,335,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
-        <Button x:Name="BTNRemoveAll" Content="حذف الكل" HorizontalAlignment="Left" Margin="423,335,0,0" VerticalAlignment="Top" Width="98" Height="28" Click="BTNRemoveAll_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <Button x:Name="BTNRemove" Content="حذف" HorizontalAlignment="Left" Margin="493,235,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNRemove_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
+        <Button x:Name="BTNEdit" Content="تعديل" HorizontalAlignment="Left" Margin="564,235,0,0" VerticalAlignment="Top" Width="66" Height="28" Click="BTNEdit_Click" Background="#FF303030" BorderBrush="#FF303030" RenderTransformOrigin="0.583,1.607"/>
+        <Button x:Name="BTNRemoveAll" Content="حذف الكل" HorizontalAlignment="Left" Margin="366,235,0,0" VerticalAlignment="Top" Width="98" Height="28" Click="BTNRemoveAll_Click_1" Background="#FF303030" BorderBrush="#FF303030"/>
     </Grid>
 </UserControl>

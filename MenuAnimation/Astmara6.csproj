@@ -86,13 +86,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Levels.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906041256551_Db.cs" />
-    <Compile Include="Migrations\201906041256551_Db.Designer.cs">
-      <DependentUpon>201906041256551_Db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906041302479_Db1.cs" />
-    <Compile Include="Migrations\201906041302479_Db1.Designer.cs">
-      <DependentUpon>201906041302479_Db1.cs</DependentUpon>
+    <Compile Include="Migrations\201906102323292_Db.cs" />
+    <Compile Include="Migrations\201906102323292_Db.Designer.cs">
+      <DependentUpon>201906102323292_Db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NameDoctor.Designer.cs">
@@ -294,11 +290,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201906041256551_Db.resx">
-      <DependentUpon>201906041256551_Db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906041302479_Db1.resx">
-      <DependentUpon>201906041302479_Db1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906102323292_Db.resx">
+      <DependentUpon>201906102323292_Db.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
